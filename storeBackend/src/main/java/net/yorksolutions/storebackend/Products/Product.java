@@ -24,7 +24,7 @@ public class Product {
     @JsonProperty
     public String description;
     @JsonProperty
-    public Date available;
+    public LocalDateTime available;
     @JsonProperty
     public Boolean discontinued;
     @JsonProperty
@@ -38,13 +38,21 @@ public class Product {
     @JsonProperty
     public Float salePrice;
     @JsonProperty
-    public Date saleDate;
+    public LocalDateTime saleDate;
 
-    public Product() {
+    public Product(){}
+    public Product(String name, String description, LocalDateTime available, Float MAP, Float retail, Float sale, LocalDateTime saleDate) {
         this.imgUrl = "https://api.lorem.space/image/fashion?w=500&h=500";
+        this.name = name;
+        this.description = description;
+        this.available = available;
         this.discontinued = false;
+        this.mapPrice = MAP;
         this.mapDate = java.time.LocalDateTime.now();
+        this.retailPrice = retail;
         this.retailDate = java.time.LocalDateTime.now();
+        this.salePrice = sale;
+        this.saleDate = saleDate;
     }
 }
 

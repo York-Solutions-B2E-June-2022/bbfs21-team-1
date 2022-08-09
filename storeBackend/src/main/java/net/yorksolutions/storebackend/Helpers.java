@@ -1,4 +1,4 @@
-package net.yorksolutions.messageboardbackend;
+package net.yorksolutions.storebackend;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,6 +16,13 @@ public class Helpers {
     public static void presenceCheck(Optional item) {
         if (item.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+    public static <T> T nullCheck(T value){
+        if (value == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        } else {
+            return value;
         }
     }
 }
