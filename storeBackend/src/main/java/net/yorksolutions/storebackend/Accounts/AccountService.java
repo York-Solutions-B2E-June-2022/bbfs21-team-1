@@ -27,5 +27,12 @@ public class AccountService {
         Account account = new Account(username, password, name, email, status);
         accountRepository.save(account);
     }
+    public Optional<Account> login(String username, String password) {
+        Optional<Account> foundAccount = accountRepository.findByUsernameAndPassword(username, password);
+        if (foundAccount.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return foundAccount;
+    }
 
 }
