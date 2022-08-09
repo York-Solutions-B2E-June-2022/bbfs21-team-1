@@ -17,8 +17,8 @@ public class ProductController {
     public Iterable<Product> getProducts(){
         return service.GET_PRODUCTS();
     }
-    @GetMapping("/{id}")
-    public Product getProduct(@PathVariable Long id){
-
-    }
+//    @GetMapping("/{id}")
+//    public Product getProduct(@PathVariable Long id){
+//
+//    }
 }
