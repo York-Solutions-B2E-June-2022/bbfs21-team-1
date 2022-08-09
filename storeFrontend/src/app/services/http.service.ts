@@ -10,10 +10,16 @@ export class HttpService {
   constructor(private httpClient: HttpClient) {}
 
   createUser(name: string, username: string, email: string, password: string, status: string) {
-    console.log("test")
     return this.httpClient.post(
       "http://localhost:8080/account/create",
       {name, username, email, password, status}
+    ) as Observable<any>
+  }
+
+  login(username: string, password: string){
+    return this.httpClient.post(
+      "http://localhost:8080/account/login",
+      {username, password}
     ) as Observable<any>
   }
 }
