@@ -7,7 +7,9 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { HomeComponent } from './components/home/home.component';
+import { ProductComponent } from './components/product/product.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { HomeComponent } from './components/home/home.component';
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    HomeComponent
+    ProductComponent,
+    CartComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

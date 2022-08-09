@@ -22,4 +22,10 @@ export class HttpService {
       {username, password}
     ) as Observable<any>
   }
+
+  displayProducts(){
+    return this.httpClient.get(
+      "http://localhost:8080/products"
+    )
+  }
 }

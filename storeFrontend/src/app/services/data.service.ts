@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
@@ -26,7 +26,7 @@ export class DataService {
   }
 
   onLogin(username: string, password: string) {
-    this.httpService.login(username, password).subscribe({
+    this.httpService.login(username, password).pipe(first()).subscribe({
       next: (data) => {
         this.user = data;
         this.currentUser = this.user;
@@ -40,5 +40,9 @@ export class DataService {
 
   onLogout() {
     this.currentUser$.next(null);
+  }
+
+  addToCart() {
+    //logic here to add item to cart - tie to http service?
   }
 }
