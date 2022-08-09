@@ -9,9 +9,12 @@ body {
   background-color: darkorchid;
   border-color: darkorchid;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn.btn-secondary {
   background-color: black;
+  border-color: black;
   color: white;
+  font-family: 'Poppins', sans-serif;
 }

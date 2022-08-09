@@ -1,0 +1,17 @@
+* {
+  border: magenta 1px dotted;
+  box-sizing: border-box;
+}
+
+.form {
+  width: 400px;
+  padding: 30px;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+h5 {
+  font-weight: bold;
+}
