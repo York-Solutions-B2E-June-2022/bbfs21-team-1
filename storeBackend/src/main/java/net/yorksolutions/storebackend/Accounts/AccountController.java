@@ -3,6 +3,8 @@ package net.yorksolutions.storebackend.Accounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/account")
 @CrossOrigin
@@ -18,6 +20,10 @@ public class AccountController {
     @PostMapping("/create")
     public void create(@RequestBody AccountAuthRequest requestBody) {
         accountService.create(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
+    }
+    @PostMapping("/login")
+    public Optional<Account> login(@RequestBody AccountAuthRequest requestBody) {
+        return accountService.login(requestBody.username, requestBody.password);
     }
 
 }
