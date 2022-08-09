@@ -10,15 +10,16 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long Id;
-    String category;
+    String name;
 
     public Category() {}
 
-    public Category(Long id, String category) {
-        this.category = category;
+    public Category(String name) {
+        this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+
+    public String getName() {
+        return name;
     }
 }
