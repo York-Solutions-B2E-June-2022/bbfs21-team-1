@@ -1,0 +1,27 @@
+import { Injectable } from '@angular/core';
+import {HttpService} from "./http.service";
+import {first} from "rxjs";
+import {IUser} from "../interfaces/IUser";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  user!: IUser;
+
+  constructor(private httpService: HttpService) {}
+
+  onRegister(name: string, username: string, email: string, password: string, status: string) {
+    this.httpService.createUser(name, username, email, password, status).pipe(first()).subscribe({
+      next: (data) => {
+        this.user = data
+      },
+      error: (error) => {
+        console.error(error)
+      }
+      }
+
+    )
+  }
+}
