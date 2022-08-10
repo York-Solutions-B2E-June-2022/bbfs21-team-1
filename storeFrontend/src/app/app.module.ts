@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProductComponent } from './components/product/product.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -19,6 +20,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     LoginComponent,
     LogoutComponent,
     ProductComponent,
+    EditProfileComponent,
     CartItemComponent,
     ShopComponent,
     ShoppingCartComponent
