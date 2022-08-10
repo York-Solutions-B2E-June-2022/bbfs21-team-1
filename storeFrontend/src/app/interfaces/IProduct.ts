@@ -1,6 +1,11 @@
 export interface IProduct {
   imgUrl: string;
   name: string;
+  description: string;
+  available: Date;
   category: string;
-  price: number;
+  mapPrice: number;
+  retailPrice: number;
+  salePrice: number;
+  saleDate: Date;
 }
