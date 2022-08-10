@@ -19,15 +19,25 @@ public class AccountController {
 
     @PostMapping("/create")
     public void create(@RequestBody AccountAuthRequest requestBody) {
-        accountService.create(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
+        accountService.create(requestBody.id, requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
     }
     @PostMapping("/login")
     public Optional<Account> login(@RequestBody AccountAuthRequest requestBody) {
         return accountService.login(requestBody.username, requestBody.password);
     }
+    @PutMapping("/edit")
+    public void edit(@RequestBody AccountAuthRequest requestBody) {
+        this.accountService.edit(requestBody);
+    }
+    @DeleteMapping
+    public void delete(@RequestBody AccountAuthRequest requestBody) {
+        this.accountService.delete(requestBody);
+    }
+
 
 }
 class AccountAuthRequest {
+    public Long id;
     public String username;
     public String password;
 

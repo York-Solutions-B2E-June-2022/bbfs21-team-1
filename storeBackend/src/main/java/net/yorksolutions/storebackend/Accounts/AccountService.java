@@ -16,7 +16,7 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public void create(String username, String password, String name, String email, String status) {
+    public void create(Long id, String username, String password, String name, String email, String status) {
         if (username == null || password == null || name == null || email == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -24,7 +24,7 @@ public class AccountService {
         if (existingAccount.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Account account = new Account(username, password, name, email, status);
+        Account account = new Account(id, username, password, name, email, status);
         accountRepository.save(account);
     }
     public Optional<Account> login(String username, String password) {
@@ -33,6 +33,26 @@ public class AccountService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         return foundAccount;
+    }
+    public void edit(AccountAuthRequest requestBody) {
+        Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
+        if (existingAccount.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        existingAccount.get().name = requestBody.name;
+        existingAccount.get().username = requestBody.username;
+        existingAccount.get().email = requestBody.email;
+        existingAccount.get().password = requestBody.password;
+        existingAccount.get().status = requestBody.status;
+
+        accountRepository.save(existingAccount.get());
+    }
+    public void delete(AccountAuthRequest requestBody) {
+        Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
+        if (existingAccount.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        accountRepository.delete(existingAccount.get());
     }
 
 }

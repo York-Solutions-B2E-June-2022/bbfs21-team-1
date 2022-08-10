@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    Long Id;
+    Long id;
     String username;
     String password;
     String name;
@@ -19,7 +19,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(String username, String password, String name, String email, String status) {
+    public Account(Long id, String username, String password, String name, String email, String status) {
         this.username = username;
         this.password = password;
         this.name = name;
