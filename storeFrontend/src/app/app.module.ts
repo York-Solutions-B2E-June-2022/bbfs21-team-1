@@ -8,8 +8,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProductComponent } from './components/product/product.component';
-import { CartComponent } from './components/cart/cart.component';
-import { ShopComponent } from './shop/shop.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { ShopComponent } from './shop/shop.component';
     LoginComponent,
     LogoutComponent,
     ProductComponent,
-    CartComponent,
-    ShopComponent
+    CartItemComponent,
+    ShopComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,14 @@
-<!--TODO this should be container? instead of form-->
-<div class="form">
-  <form>
-    <div class="form-group">
-      <img src="https://api.lorem.space/image/fashion?w=300&h=300" alt="fashion stock image">
-<!--      TODO swap these-->
-      <img src="{{product.imgUrl}}">
+<div class="card">
+    <div>
+      <img src="{{product.imgUrl}}" alt="rotating stock image fashion photo" width="100%">
     </div>
-    <div class="form-group">
+    <div>
       <h5 id="productName">{{product.name}}</h5>
-      <h6 id="productCategory">{{product.category}}</h6>
-      <h6 id="productPrice">{{product.price | currency}}</h6>
+      <p id="productDescription">{{product.description}}</p>
+      <!--      <h6 id="productCategory">{{product.category}}test category</h6>-->
+      <h6 id="productPrice">{{product.retailPrice | currency}}</h6>
     </div>
     <div class="button-group">
       <button id="addToCart" class="btn btn-primary">Add to cart</button>
     </div>
-  </form>
 </div>

@@ -1,8 +1,13 @@
 h4 {
-
-  background-color: darkorchid;
+  background-image: linear-gradient(to right, darkorchid, lightseagreen);
   font-family: "Marker Felt", serif;
   font-weight: bold;
+  text-shadow: 2px 2px 4px black;
   padding: 10px;
   color: mintcream;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row-reverse;
 }

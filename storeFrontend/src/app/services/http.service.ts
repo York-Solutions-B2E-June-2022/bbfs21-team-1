@@ -28,4 +28,9 @@ export class HttpService {
       "http://localhost:8080/products"
     )
   }
+
+  displayCartItemList(){
+    return this.httpClient.get("")
+    //TODO hookup to backend
+  }
 }
