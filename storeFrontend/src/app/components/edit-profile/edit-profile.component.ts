@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+  }
+
+  onSave() {
+    this.dataService.onSaveEdit()
+  }
+  onEdit() {
+    this.dataService.onEditProfile()
+  }
+  onCancel() {
+    this.dataService.onCancelEdit()
+  }
+  onDelete() {
+    this.dataService.onDeleteProfile()
   }
 
 }
