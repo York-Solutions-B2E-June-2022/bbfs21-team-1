@@ -7,6 +7,7 @@ public class ProductRequest {
     public Long id;
     public String name;
     public String description;
+    public String category;
     public LocalDateTime available;
     public Float mapPrice;
     public Float retailPrice;
