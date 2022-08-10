@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import { IUser } from '../interfaces/IUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   createUser(name: string, username: string, email: string, password: string, status: string) {
     return this.httpClient.post(
@@ -16,22 +18,23 @@ export class HttpService {
     ) as Observable<any>
   }
 
-  login(username: string, password: string){
+  login(username: string, password: string) {
     return this.httpClient.post(
       "http://localhost:8080/account/login",
       {username, password}
     ) as Observable<any>
   }
 
-  displayProducts(){
+  displayProducts() {
     return this.httpClient.get(
       "http://localhost:8080/products"
     )
-
   }
 
-  displayCartItemList(){
-    return this.httpClient.get("")
-    //TODO hookup to backend
+  displayCartItemList(id: number){
+    return this.httpClient.post(
+      "http://localhost:8080/carts",
+      {id}
+    )
   }
 }

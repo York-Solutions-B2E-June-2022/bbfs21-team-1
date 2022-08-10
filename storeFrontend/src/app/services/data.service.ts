@@ -2,14 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
+import {IProduct} from "../interfaces/IProduct";
+import {ICartItem} from "../interfaces/ICartItem";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+
   user!: IUser;
   currentUser!: IUser;
   currentUser$ = new Subject<IUser | null>();
+  cartItemList: Array<ICartItem> = []; //todo pull from http service here
 
   constructor(private httpService: HttpService) {
   }
