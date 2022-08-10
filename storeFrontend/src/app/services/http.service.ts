@@ -27,5 +27,6 @@ export class HttpService {
     return this.httpClient.get(
       "http://localhost:8080/products"
     )
+
   }
 }

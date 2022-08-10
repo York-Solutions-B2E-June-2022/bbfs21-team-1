@@ -45,4 +45,6 @@ export class DataService {
   addToCart() {
     //logic here to add item to cart - tie to http service?
   }
+
+
 }
