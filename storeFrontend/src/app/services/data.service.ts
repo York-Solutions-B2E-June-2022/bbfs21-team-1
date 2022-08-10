@@ -50,5 +50,19 @@ export class DataService {
     //logic here to add item to cart - tie to http service?
   }
 
+  // Edit-Profile functions
+
+  onSaveEdit() {
+
+  }
+  onEditProfile() {
+
+  }
+  onCancelEdit() {
+
+  }
+  onDeleteProfile() {
+
+  }
 
 }
