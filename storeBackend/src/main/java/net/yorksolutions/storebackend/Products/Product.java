@@ -1,12 +1,10 @@
 package net.yorksolutions.storebackend.Products;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import net.yorksolutions.storebackend.Categories.Category;
 import netscape.javascript.JSObject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -23,6 +21,9 @@ public class Product {
     public String name;
     @JsonProperty
     public String description;
+    @JsonProperty
+    @ManyToOne
+    public Category category;
     @JsonProperty
     public LocalDateTime available;
     @JsonProperty
@@ -41,10 +42,20 @@ public class Product {
     public LocalDateTime saleDate;
 
     public Product(){}
-    public Product(String name, String description, LocalDateTime available, Float MAP, Float retail, Float sale, LocalDateTime saleDate) {
+    public Product(
+            String name,
+            String description,
+            Category category,
+            LocalDateTime available,
+            Float MAP,
+            Float retail,
+            Float sale,
+            LocalDateTime saleDate
+    ){
         this.imgUrl = "https://api.lorem.space/image/fashion?w=500&h=500";
         this.name = name;
         this.description = description;
+        this.category = category;
         this.available = available;
         this.discontinued = false;
         this.mapPrice = MAP;
