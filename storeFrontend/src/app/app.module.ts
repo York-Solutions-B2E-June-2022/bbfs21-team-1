@@ -20,7 +20,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     LoginComponent,
     LogoutComponent,
     ProductComponent,
-    EditProfileComponent
+    EditProfileComponent,
     CartItemComponent,
     ShopComponent,
     ShoppingCartComponent
