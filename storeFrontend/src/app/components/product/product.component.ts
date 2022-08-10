@@ -13,10 +13,6 @@ export class ProductComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
-  productName!: string;
-  productCategory!: string;
-  productPrice!: string;
-
   ngOnInit(): void {
   }
 

@@ -1,5 +1,7 @@
 package net.yorksolutions.storebackend.Products;
 
+import net.yorksolutions.storebackend.Categories.Category;
+import net.yorksolutions.storebackend.Categories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,11 @@ import static net.yorksolutions.storebackend.Helpers.nullCheck;
 public class ProductService {
 
     ProductRepository repository;
-
+    CategoryRepository categoryRepository;
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.repository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Iterable<Product> GET_PRODUCTS() {
@@ -23,12 +26,18 @@ public class ProductService {
     public Product GET_PRODUCT(Long id) {
         return emptyCheck(repository.findById(id));
     }
+    public Iterable<Product> GET_BY_CATEGORY(String category){
+        Category param = emptyCheck(this.categoryRepository.findByName(category));
+        return this.repository.getByCategory(param);
+    }
 
     public void CREATE_PRODUCT(ProductRequest requestBody) {
-        System.out.println("creating product...");
+        Category category = emptyCheck(this.categoryRepository.findByName(requestBody.category));
+        System.out.println(requestBody.mapPrice);
         Product newProduct = new Product(
                 nullCheck(requestBody.name),
                 nullCheck(requestBody.description),
+                category,
                 nullCheck(requestBody.available),
                 nullCheck(requestBody.mapPrice),
                 nullCheck(requestBody.retailPrice),
@@ -48,5 +57,8 @@ public class ProductService {
         product.salePrice = requestBody.salePrice;
         product.saleDate = requestBody.saleDate;
         this.repository.save(product);
+    }
+    public void DELETE_PRODUCT(Long id){
+        this.repository.deleteById(id);
     }
 }

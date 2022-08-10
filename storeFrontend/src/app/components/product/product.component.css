@@ -1,17 +1,17 @@
 * {
-  border: magenta 1px dotted;
   box-sizing: border-box;
 }
 
-.form {
-  width: 400px;
+.card {
+  max-width: fit-content;
   padding: 30px;
 }
 
-h3 {
+h5 {
   font-weight: bold;
+  padding-top: 15px;
 }
 
-h5 {
+h6 {
   font-weight: bold;
 }

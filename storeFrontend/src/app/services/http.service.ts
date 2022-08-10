@@ -29,4 +29,9 @@ export class HttpService {
     )
 
   }
+
+  displayCartItemList(){
+    return this.httpClient.get("")
+    //TODO hookup to backend
+  }
 }
