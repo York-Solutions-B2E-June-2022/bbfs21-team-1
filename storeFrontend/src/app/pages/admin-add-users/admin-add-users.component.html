@@ -1,0 +1,38 @@
+<div class="pg-container">
+	<h3>{{isEditing ? "Edit" : "Create"}} User</h3>
+	<strong *ngIf="error" class="danger">{{error}}</strong>
+	<strong *ngIf="success" class="success">{{success}}</strong>
+	<form>
+		<div class="dt-input">
+			<label for="name">Name</label>
+			<input id="name" name="name" [(ngModel)]="newUser.name">
+		</div>
+		<div class="dt-input">
+			<label for="username">Username</label>
+			<input id="username" name="username" [(ngModel)]="newUser.username">
+		</div>
+		<div class="dt-input">
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" [(ngModel)]="newUser.email">
+		</div>
+		<div class="dt-input">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" [(ngModel)]="newUser.password">
+		</div>
+		<div class="dt-input">
+			<label for="status">Access</label>
+			<select id="status" name="status" [(ngModel)]="newUser.status">
+				<option selected disabled>Select Access</option>
+				<option>User</option>
+				<option>Shop Keeper</option>
+				<option>Admin</option>
+			</select>
+		</div>
+		<div class="btn-container">
+			<button class="btn btn-main" (click)="onSave()">Save</button>
+			<a class="btn btn-secondary" routerLink="/users">Cancel</a>
+
+		</div>
+	</form>
+	<a *ngIf="isEditing" class="btn btn-danger">Delete User</a>
+</div>

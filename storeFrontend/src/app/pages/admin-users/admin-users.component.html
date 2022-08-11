@@ -1,0 +1,17 @@
+<div class="pg-container">
+	<header>
+		<h3>Users</h3>
+		<a class="btn" routerLink="/users/add">Create User</a>
+	</header>
+	<table>
+		<tbody>
+			<tr *ngFor="let user of userList">
+				<td>{{user.id}}</td>
+				<td class="bold">{{user.name}}</td>
+				<td>{{user.username}}</td>
+				<td>{{user.status}}</td>
+				<td><a routerLink="/users/add" class="btn" (click)="onEdit(user)">Edit</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
