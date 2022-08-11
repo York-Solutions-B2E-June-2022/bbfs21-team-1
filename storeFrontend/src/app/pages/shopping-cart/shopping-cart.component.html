@@ -1,5 +1,5 @@
 <div>
-  <h3>Your Cart</h3>
+  <h3>Your Bag</h3>
 </div>
 
 <div class="container">
@@ -7,18 +7,19 @@
     <app-cart-item [cartItem]="cartItem"></app-cart-item>
   </div>
 
-  <h4>Cart Summary</h4>
+  <h4>Summary</h4>
   <label for="coupon">Coupon Code</label>
   <input id="coupon">
 
   <div>
+    <h6>Coupon Discount: </h6>
+    <h6>Sale Discount: </h6>
     <h6>Subtotal: {{cartSubtotal | currency}}</h6>
     <h6>Tax: {{taxCost | currency}}</h6>
     <h6>Shipping: {{shippingCost | currency}}</h6>
-    <!--  Coupon Discount:-->
-<!--    Sale Discount-->
     <h6>Total: {{cartTotal | currency}}</h6>
   </div>
-
-  <button class="btn btn-primary">Checkout</button>
+  <div>
+    <button class="btn btn-primary">Checkout</button>
+  </div>
 </div>

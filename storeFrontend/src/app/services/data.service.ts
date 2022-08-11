@@ -13,6 +13,7 @@ export class DataService {
   user!: IUser;
   currentUser!: IUser;
   currentUser$ = new Subject<IUser | null>();
+  cartItem!: ICartItem;
   cartItemList: Array<ICartItem> = []; //todo pull from http service here
 
   //ADMIN User Edit Variables
@@ -31,6 +32,7 @@ export class DataService {
         console.error(error)
       }
     })
+    console.log("account created successfully");
   }
 
   onLogin(username: string, password: string) {
@@ -45,16 +47,25 @@ export class DataService {
         console.error(error)
       }
     })
+    console.log(this.user);
+    console.log(this.currentUser);
+    console.log(this.currentUser$);
+    console.log("test");
   }
 
   onLogout() {
     this.currentUser$.next(null);
   }
 
-
-
-  addToCart() {
-    //logic here to add item to cart - tie to http service?
+  addToCart(id: number, cartId: number, productId: number, quantity: number) {
+   this.httpService.addItemToCart(id, cartId, productId, quantity).pipe(first()).subscribe({
+     next: (data) => {
+       this.cartItem = data;
+     },
+     error: (error) => {
+       console.error(error)
+     }
+   })
   }
 
   // Edit-Profile functions
