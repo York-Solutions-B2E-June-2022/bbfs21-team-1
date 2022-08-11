@@ -2,6 +2,8 @@
 
 package net.yorksolutions.storebackend.Accounts;
 
+import net.yorksolutions.storebackend.Cart.Cart;
+import net.yorksolutions.storebackend.Cart.CartRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,8 +14,10 @@ import java.util.Optional;
 @Service
 public class AccountService {
 
+    CartRepository cartRepository;
     AccountRepository accountRepository;
-    public AccountService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository, CartRepository cartRepository) {
+        this.cartRepository =cartRepository;
         this.accountRepository = accountRepository;
     }
 
@@ -21,7 +25,7 @@ public class AccountService {
         return this.accountRepository.findAll();
     }
 
-    public void create(Long id, String username, String password, String name, String email, String status) {
+    public void create(String username, String password, String name, String email, String status) {
         if (Objects.equals(username, "") || Objects.equals(password, "") || Objects.equals(name, "") || Objects.equals(email, "")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -30,6 +34,8 @@ public class AccountService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Account account = new Account(username, password, name, email, status);
+        Cart cart = new Cart(account);
+        cartRepository.save(cart);
         accountRepository.save(account);
     }
     public Optional<Account> login(String username, String password) {
@@ -52,8 +58,8 @@ public class AccountService {
 
         accountRepository.save(existingAccount.get());
     }
-    public void delete(AccountAuthRequest requestBody) {
-        Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
+    public void delete(Long id) {
+        Optional<Account> existingAccount = accountRepository.findById(id);
         if (existingAccount.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
