@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 public class AccountService {
 
-    AccountRepository accountRepository;
     CartRepository cartRepository;
+    AccountRepository accountRepository;
     public AccountService(AccountRepository accountRepository, CartRepository cartRepository) {
         this.accountRepository = accountRepository;
         this.cartRepository = cartRepository;
@@ -58,8 +58,8 @@ public class AccountService {
 
         accountRepository.save(existingAccount.get());
     }
-    public void delete(AccountAuthRequest requestBody) {
-        Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
+    public void delete(Long id) {
+        Optional<Account> existingAccount = accountRepository.findById(id);
         if (existingAccount.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
