@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {IUser} from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,11 @@ import {DataService} from "../../services/data.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  currentUser: IUser
+
+  constructor(private dataService: DataService) {
+    this.currentUser = dataService.currentUser;
+  }
 
   ngOnInit(): void {
   }

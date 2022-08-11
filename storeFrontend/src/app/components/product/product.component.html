@@ -5,10 +5,10 @@
     <div>
       <h5 id="productName">{{product.name}}</h5>
       <p id="productDescription">{{product.description}}</p>
-      <!--      <h6 id="productCategory">{{product.category}}test category</h6>-->
       <h6 id="productPrice">{{product.retailPrice | currency}}</h6>
     </div>
     <div class="button-group">
-      <button id="addToCart" class="btn btn-primary">Add to cart</button>
+      <button id="addToCart" class="btn btn-primary" (click)="onClick()">Add to cart</button>
+<!--      todo hookup backend here^-->
     </div>
 </div>

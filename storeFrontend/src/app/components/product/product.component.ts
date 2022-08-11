@@ -11,12 +11,26 @@ export class ProductComponent implements OnInit {
 
   @Input() product!: IProduct;
 
-  constructor(private dataService: DataService) { }
+  id!: number;
+  cartId!: number;
+  productId!: number;
+  quantity!: number;
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
   }
 
-  onClick(){
-    this.dataService.addToCart();
+  onClick() {
+
+    this.id = this.dataService.currentUser.id;
+
+    //this.cartId = this.dataService.currentUser.cartId;
+    this.productId = this.product.id;
+    //todo fix hardcoding later - or always one and edit in cart?
+    this.quantity = 1;
+//todo wait on this for now
+    this.dataService.addToCart(this.id, this.cartId, this.productId, this.quantity);
   }
 }

@@ -27,13 +27,13 @@ export class ShoppingCartComponent implements OnInit {
   cartTotal: number = 0;
 
   //todo fix any type
-  id!: any
+  id!: number
 
   //todo coupon discount
   //todo sale discount
 
   constructor(private dataService: DataService, private httpService: HttpService) {
-    //this.id = dataService.currentUser.id;
+    // this.id = dataService.currentUser.id;
     // httpService.displayCartItemList(this.id).pipe(first()).subscribe({
     //   next: (data) => {
     //     this.id = data;
