@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
-import {IProduct} from "../interfaces/IProduct";
 import {ICartItem} from "../interfaces/ICartItem";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class DataService {
   currentUser$ = new Subject<IUser | null>();
   cartItem!: ICartItem;
   cartItemList: Array<ICartItem> = []; //todo pull from http service here
+
+  //ADMIN User Edit Variables
+  userToEdit:IUser|null = null
+  // userToEdit$ = new Subject<IUser>()
 
   constructor(private httpService: HttpService) {
   }
@@ -35,6 +39,7 @@ export class DataService {
     this.httpService.login(username, password).pipe(first()).subscribe({
       next: (data) => {
         this.user = data;
+        console.log(data);
         this.currentUser = this.user;
         this.currentUser$.next(this.currentUser);
       },
@@ -65,17 +70,33 @@ export class DataService {
 
   // Edit-Profile functions
 
-  onSaveEdit() {
-
+  onSaveEdit(name: string, username: string, email: string, password: string, status: string) {
+    this.httpService.editUser(name, username, email, password, status, this.currentUser.id).pipe(first()).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.currentUser = this.user;
+        this.currentUser$.next(this.currentUser);
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
   }
-  onEditProfile() {
 
-  }
+  // onEditProfile() {
+  // }
+
   onCancelEdit() {
 
   }
   onDeleteProfile() {
 
+  }
+
+  //ADMIN User Edit Functions
+  SET_USER_EDIT(user:IUser|null = null){
+    this.userToEdit = user
+    // this.currentUser$.next(user)
   }
 
 }

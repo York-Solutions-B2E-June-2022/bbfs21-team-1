@@ -1,6 +1,7 @@
 package net.yorksolutions.storebackend.Cart;
 
 import net.yorksolutions.storebackend.CartItem.CartItem;
+import net.yorksolutions.storebackend.CartItem.CartItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,12 @@ public class CartController {
     }
 
     @GetMapping("/{userId}")
-    public Iterable<CartItem> getUserCart(@PathVariable Long userId){
-        return this.service.GET_USER_CART(userId);
+    public Iterable<CartItem> getAllCartItems(@PathVariable Long userId){
+        return this.service.GET_USER_CART_ITEMS(userId);
+    }
+    @PostMapping("/add")
+    public void addToCart(@RequestBody CartItemRequest request){
+       this.service.ADD_TO_CART(request);
     }
 
     @PostMapping

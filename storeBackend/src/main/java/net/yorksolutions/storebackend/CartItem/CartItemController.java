@@ -14,8 +14,6 @@ public class CartItemController {
         this.service = service;
     }
 
-    @PostMapping
-    public void createItem(@RequestBody CartItemRequest requestBody){this.service.ADD_ITEM(requestBody);}
     @PostMapping("/edit")
     public void setQty(@RequestBody CartItemRequest request){
         this.service.SET_QTY(request.quantity, request.id);

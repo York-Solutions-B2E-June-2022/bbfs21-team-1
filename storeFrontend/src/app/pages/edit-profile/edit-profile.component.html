@@ -1,5 +1,3 @@
-<!--Page shown if local var isEditing is set to true-->
-
 <div class="parentContainer">
   <div class="titleParent">
     <div class="title">
@@ -11,19 +9,19 @@
   <form>
     <div class="form-group">
       <label for="name">Name</label>
-      <input class="form-control" id="name"/>
+      <input class="form-control" id="name" name="name" [(ngModel)]="name"/>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input class="form-control" id="username"/>
+      <input class="form-control" id="username" name="username" [(ngModel)]="username"/>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input class="form-control" id="email"/>
+      <input class="form-control" id="email" name="email" [(ngModel)]="email"/>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input class="form-control" id="password" type="password"/>
+      <input class="form-control" id="password" type="password" name="password" [(ngModel)]="password"/>
     </div>
     <button type="submit" class="btn btn-primary" (click)="onSave()">Save</button>
     <button type="reset" class="btn btn-secondary"(click)="onCancel()">Cancel</button>
@@ -35,38 +33,39 @@
 </div>
 </div>
 
-<!--Page shown if isEditing is set to false-->
 
-<div class="parentContainer">
-  <div class="titleParent">
-    <div class="title">
-      <h3>Profile Information</h3>
-    </div>
-  </div>
-  <div class="Container">
-    <div class="Profile">
+<!--If there is more time, make this a profile information page.-->
 
-<!--TODO - delete hardcoded text and make user data appear-->
-      <div class="hardCodedJunk">
-        <div class="form-group">
-          <label>Name:</label>
-          <p> Luke Skywalker </p>
-        </div>
-        <div class="form-group">
-          <label>Username:</label>
-          <p>DeathStarKilla2</p>
-        </div>
-        <div class="form-group">
-          <label>Email:</label>
-          <p>lskywalker@aol.com </p>
-        </div>
-        <div class="form-group">
-          <label>Password:</label>
-          <p>...........</p>
-        </div>
-        <button type="submit" class="btn btn-primary"(click)="onEdit()">Edit Profile</button>
-      </div>
+<!--<div class="parentContainer">-->
+<!--  <div class="titleParent">-->
+<!--    <div class="title">-->
+<!--      <h3>Profile Information</h3>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="Container">-->
+<!--    <div class="Profile">-->
 
-    </div>
-  </div>
-</div>
+<!--&lt;!&ndash;TODO - delete hardcoded text and make user data appear&ndash;&gt;-->
+<!--      <div class="hardCodedJunk">-->
+<!--        <div class="form-group">-->
+<!--          <label>Name:</label>-->
+<!--          <p> Luke Skywalker </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label>Username:</label>-->
+<!--          <p>DeathStarKilla2</p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label>Email:</label>-->
+<!--          <p>lskywalker@aol.com </p>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label>Password:</label>-->
+<!--          <p>...........</p>-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary"(click)="onEdit()">Edit Profile</button>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
