@@ -27,8 +27,8 @@ export class HttpService {
     return this.httpClient.put('http://localhost:8080/account/edit', {...userObject})
   }
 
-  DELETE_USER(){
-    // return this.httpClient.post('')
+  DELETE_USER(id:number){
+    return this.httpClient.delete(`http://localhost:8080/account/${id}`)
   }
 
   login(username: string, password: string) {

@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
 
   onClick() {
 
-    this.id = this.dataService.currentUser.id;
+    this.id = this.dataService.currentUser.id!;
 
     //this.cartId = this.dataService.currentUser.cartId;
     this.productId = this.product.id;
