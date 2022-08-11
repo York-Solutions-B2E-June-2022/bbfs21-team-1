@@ -13,8 +13,7 @@ export class DataService {
   user!: IUser;
   currentUser!: IUser;
   currentUser$ = new Subject<IUser | null>();
-  cartItem!: ICartItem;
-  cartItemList: Array<ICartItem> = []; //todo pull from http service here
+
 
   //ADMIN User Edit Variables
   userToEdit:IUser|null = null
@@ -57,10 +56,10 @@ export class DataService {
     this.currentUser$.next(null);
   }
 
-  addToCart(id: number, cartId: number, productId: number, quantity: number) {
-   this.httpService.addItemToCart(id, cartId, productId, quantity).pipe(first()).subscribe({
+  addToCart(userId: number, productId: number,) {
+   this.httpService.addItemToCart(userId, productId).pipe(first()).subscribe({
      next: (data) => {
-       this.cartItem = data;
+       //this.cartItem = data;
      },
      error: (error) => {
        console.error(error)

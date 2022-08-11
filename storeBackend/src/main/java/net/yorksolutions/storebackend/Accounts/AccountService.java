@@ -17,8 +17,8 @@ public class AccountService {
     CartRepository cartRepository;
     AccountRepository accountRepository;
     public AccountService(AccountRepository accountRepository, CartRepository cartRepository) {
-        this.cartRepository =cartRepository;
         this.accountRepository = accountRepository;
+        this.cartRepository = cartRepository;
     }
 
     public Iterable<Account> GET_ALL_USERS(){
@@ -35,8 +35,8 @@ public class AccountService {
         }
         Account account = new Account(username, password, name, email, status);
         Cart cart = new Cart(account);
-        cartRepository.save(cart);
         accountRepository.save(account);
+        cartRepository.save(cart);
     }
     public Optional<Account> login(String username, String password) {
         Optional<Account> foundAccount = accountRepository.findByUsernameAndPassword(username, password);
