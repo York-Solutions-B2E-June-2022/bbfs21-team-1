@@ -71,7 +71,7 @@ export class DataService {
   // Edit-Profile functions
 
   onSaveEdit(name: string, username: string, email: string, password: string, status: string) {
-    this.httpService.editUser(name, username, email, password, status, this.currentUser.id).pipe(first()).subscribe({
+    this.httpService.editUser(name, username, email, password, status, this.currentUser.id!).pipe(first()).subscribe({
       next: (data) => {
         this.user = data;
         this.currentUser = this.user;
