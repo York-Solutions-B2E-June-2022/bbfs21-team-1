@@ -17,6 +17,11 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    @GetMapping
+    public Iterable<Account> getAllUsers(){
+        return this.accountService.GET_ALL_USERS();
+    }
+
     @PostMapping("/create")
     public void create(@RequestBody AccountAuthRequest requestBody) {
         accountService.create(requestBody.id, requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);

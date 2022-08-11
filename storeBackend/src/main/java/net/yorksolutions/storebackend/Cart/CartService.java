@@ -3,6 +3,7 @@ package net.yorksolutions.storebackend.Cart;
 import net.yorksolutions.storebackend.Accounts.Account;
 import net.yorksolutions.storebackend.Accounts.AccountRepository;
 import net.yorksolutions.storebackend.CartItem.CartItem;
+import net.yorksolutions.storebackend.CartItem.CartItemRequest;
 import net.yorksolutions.storebackend.CartItem.CartItemService;
 import net.yorksolutions.storebackend.Products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class CartService {
         this.accountRepository = accountRepository;
         this.cartItemService = service;
     }
-    public Iterable<CartItem> GET_USER_CART(Long id){
+
+    public Iterable<CartItem> GET_USER_CART_ITEMS(Long id){
         Account user = emptyCheck(this.accountRepository.findById(id));
         Cart cart = this.repository.findByAccount(user);
         return this.cartItemService.GET_BY_CART(cart.id);
@@ -32,4 +34,10 @@ public class CartService {
         Cart cart = new Cart(user);
         this.repository.save(cart);
     }
+    public void ADD_TO_CART(CartItemRequest request){
+        Account user = emptyCheck(this.accountRepository.findById(request.userId));
+        Cart cart = this.repository.findByAccount(user);
+        this.cartItemService.ADD_ITEM(request, cart);
+    }
+
 }

@@ -12,12 +12,22 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {
   }
-
+  //USERS
+  GET_ALL_USERS():Observable<IUser[]>{
+    return this.httpClient.get<IUser[]>("http://localhost:8080/account")
+  }
   createUser(name: string, username: string, email: string, password: string, status: string) {
     return this.httpClient.post(
       "http://localhost:8080/account/create",
       {name, username, email, password, status}
     ) as Observable<any>
+  }
+  EDIT_USER(userObject:IUser){
+    return this.httpClient.put('http://localhost:8080/account/edit', {...userObject})
+  }
+
+  DELETE_USER(){
+    // return this.httpClient.post('')
   }
 
   login(username: string, password: string) {
@@ -27,6 +37,7 @@ export class HttpService {
     ) as Observable<any>
   }
 
+  //PRODUCTS
   displayProducts():Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(
       "http://localhost:8080/products"
