@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   username!: string;
   email!: string;
   password!: string;
-  status!: string;
+  status:string = "Customer"
 
 
   constructor(private dataService: DataService) {}

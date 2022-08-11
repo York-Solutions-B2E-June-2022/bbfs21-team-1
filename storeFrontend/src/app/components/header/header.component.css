@@ -1,0 +1,15 @@
+header {
+    background-image: linear-gradient(to right, darkorchid, lightseagreen);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header a:not(.btn) {
+    text-decoration: none;
+    font-family: "Marker Felt", serif;
+    font-weight: bold;
+    font-size: 1.75rem;
+    text-shadow: 2px 2px 4px black;
+    color: mintcream;
+}

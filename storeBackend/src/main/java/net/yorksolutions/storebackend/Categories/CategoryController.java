@@ -14,6 +14,12 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+
+    @GetMapping
+    public Iterable<Category> getAllCategories(){
+        return this.categoryService.GET_ALL_CATEGORIES();
+    }
+
     @PostMapping("/create")
     public void create(@RequestBody CategoryAuthRequest requestBody) {
         categoryService.create(requestBody.name);
