@@ -13,10 +13,9 @@ import {ICartItem} from "../../interfaces/ICartItem";
 })
 export class ShoppingCartComponent implements OnInit {
 
-  //todo fix any type
+  cartItem!: ICartItem;
   cartItemList!: Array<ICartItem>
   //cartItemList$: Subscription;
-  //todo need to subscribe/unsubscribe, add quantity function, implement onDestroy
 
   //todo add correct tax rate
   taxRate: number = 0.07;
@@ -26,32 +25,33 @@ export class ShoppingCartComponent implements OnInit {
   shippingCost: number = 0;
   cartTotal: number = 0;
 
-  //todo fix any type
   id!: number
 
   //todo coupon discount
   //todo sale discount
 
+
   constructor(private dataService: DataService, private httpService: HttpService) {
-    // this.id = dataService.currentUser.id;
-    // httpService.displayCartItemList(this.id).pipe(first()).subscribe({
-    //   next: (data) => {
-    //     this.id = data;
-    //     console.log(data);
-    //   },
-    //   error: (error) => {
-    //     console.error(error)
-    //   }
-    // })
-    // this.updateTotals();
+    this.id = dataService.currentUser.id!;
+    httpService.displayCartItemList(this.id).pipe(first()).subscribe({
+      next: (data) => {
+        this.cartItemList = data;
+        console.log(data);
+        this.updateTotals();
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
   }
 
   updateTotals() {
-
+    console.log("hello world");
     this.cartSubtotal = 0;
-    for (let cartItem of this.cartItemList) {
-      this.cartSubtotal += cartItem.price * cartItem.count;
-    }
+
+    this.cartItemList.forEach((i) => {
+      this.cartSubtotal += i.product.retailPrice * i.quantity;
+    })
 
     this.taxCost = this.cartSubtotal * this.taxRate;
     this.shippingCost = 10; //todo change this $10 flat test rate later

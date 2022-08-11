@@ -2,6 +2,8 @@
 
 package net.yorksolutions.storebackend.Accounts;
 
+import net.yorksolutions.storebackend.Cart.Cart;
+import net.yorksolutions.storebackend.Cart.CartRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,15 +15,17 @@ import java.util.Optional;
 public class AccountService {
 
     AccountRepository accountRepository;
-    public AccountService(AccountRepository accountRepository) {
+    CartRepository cartRepository;
+    public AccountService(AccountRepository accountRepository, CartRepository cartRepository) {
         this.accountRepository = accountRepository;
+        this.cartRepository = cartRepository;
     }
 
     public Iterable<Account> GET_ALL_USERS(){
         return this.accountRepository.findAll();
     }
 
-    public void create(Long id, String username, String password, String name, String email, String status) {
+    public void create(String username, String password, String name, String email, String status) {
         if (Objects.equals(username, "") || Objects.equals(password, "") || Objects.equals(name, "") || Objects.equals(email, "")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -30,7 +34,9 @@ public class AccountService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Account account = new Account(username, password, name, email, status);
+        Cart cart = new Cart(account);
         accountRepository.save(account);
+        cartRepository.save(cart);
     }
     public Optional<Account> login(String username, String password) {
         Optional<Account> foundAccount = accountRepository.findByUsernameAndPassword(username, password);
