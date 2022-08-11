@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
-import {IProduct} from "../interfaces/IProduct";
 import {ICartItem} from "../interfaces/ICartItem";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 
@@ -15,6 +14,10 @@ export class DataService {
   currentUser!: IUser;
   currentUser$ = new Subject<IUser | null>();
   cartItemList: Array<ICartItem> = []; //todo pull from http service here
+
+  //ADMIN User Edit Variables
+  userToEdit:IUser|null = null
+  // userToEdit$ = new Subject<IUser>()
 
   constructor(private httpService: HttpService) {
   }
@@ -77,6 +80,12 @@ export class DataService {
   }
   onDeleteProfile() {
 
+  }
+
+  //ADMIN User Edit Functions
+  SET_USER_EDIT(user:IUser|null = null){
+    this.userToEdit = user
+    // this.currentUser$.next(user)
   }
 
 }

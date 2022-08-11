@@ -21,7 +21,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     CartItemComponent,
     HeaderComponent,
     routingComponents,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

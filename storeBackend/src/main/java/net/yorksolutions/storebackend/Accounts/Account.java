@@ -1,6 +1,8 @@
 
 package net.yorksolutions.storebackend.Accounts;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,8 @@ public class Account {
     String email;
     String status;
 
-    public Account() {}
+    public Account() {
+    }
 
     public Account(String username, String password, String name, String email, String status) {
         this.username = username;
@@ -46,7 +49,7 @@ public class Account {
     public String getStatus() {
         return status;
     }
-
+    
     public Long getId() {
         return id;
     }

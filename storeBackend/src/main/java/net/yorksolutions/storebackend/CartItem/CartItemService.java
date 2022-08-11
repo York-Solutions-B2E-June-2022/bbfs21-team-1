@@ -2,6 +2,7 @@ package net.yorksolutions.storebackend.CartItem;
 
 import net.yorksolutions.storebackend.Cart.Cart;
 import net.yorksolutions.storebackend.Cart.CartRepository;
+import net.yorksolutions.storebackend.Cart.CartService;
 import net.yorksolutions.storebackend.Products.Product;
 import net.yorksolutions.storebackend.Products.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,7 @@ public class CartItemService {
         Cart cart = emptyCheck(this.cartRepository.findById(id));
         return this.repository.findAllByCart(cart);
     }
-    public void ADD_ITEM(CartItemRequest requestBody){
-        Cart cart = emptyCheck(this.cartRepository.findById(requestBody.cartId));
+    public void ADD_ITEM(CartItemRequest requestBody, Cart cart){
         Product product = emptyCheck(this.productRepository.findById(requestBody.productId));
         CartItem item = new CartItem(
             product,

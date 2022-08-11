@@ -35,6 +35,8 @@ export class ShopComponent implements OnInit {
     this.filter = query;
     if (this.filter !== "All") {
       this.filteredList = this.MASTER_PRODUCT_LIST.filter((p) => p.category.name === this.filter)
+    } else {
+      this.filteredList = this.MASTER_PRODUCT_LIST
     }
   }
 

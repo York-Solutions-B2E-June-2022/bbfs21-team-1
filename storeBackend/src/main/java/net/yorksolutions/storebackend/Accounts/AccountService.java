@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -16,8 +17,12 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public void create(String username, String password, String name, String email, String status) {
-        if (username == null || password == null || name == null || email == null) {
+    public Iterable<Account> GET_ALL_USERS(){
+        return this.accountRepository.findAll();
+    }
+
+    public void create(Long id, String username, String password, String name, String email, String status) {
+        if (Objects.equals(username, "") || Objects.equals(password, "") || Objects.equals(name, "") || Objects.equals(email, "")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Optional<Account> existingAccount = accountRepository.findByUsername(username);
