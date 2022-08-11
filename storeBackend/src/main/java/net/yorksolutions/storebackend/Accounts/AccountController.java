@@ -34,7 +34,6 @@ public class AccountController {
     public void edit(@RequestBody AccountAuthRequest requestBody) {
         this.accountService.edit(requestBody);
     }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         this.accountService.delete(id);

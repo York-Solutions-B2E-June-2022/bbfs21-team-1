@@ -38,6 +38,7 @@ public class AccountService {
         accountRepository.save(account);
         cartRepository.save(cart);
     }
+
     public Optional<Account> login(String username, String password) {
         Optional<Account> foundAccount = accountRepository.findByUsernameAndPassword(username, password);
         if (foundAccount.isEmpty()) {
@@ -45,6 +46,7 @@ public class AccountService {
         }
         return foundAccount;
     }
+
     public void edit(AccountAuthRequest requestBody) {
         Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
         if (existingAccount.isEmpty()) {
