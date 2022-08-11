@@ -5,6 +5,7 @@
 .card {
   max-width: fit-content;
   padding: 30px;
+  height: 100%;
 }
 
 h5 {

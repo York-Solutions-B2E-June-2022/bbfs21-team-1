@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { IUser } from '../interfaces/IUser';
+import {ICategory} from "../interfaces/ICategory";
+import {IProduct} from "../interfaces/IProduct";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +27,8 @@ export class HttpService {
     ) as Observable<any>
   }
 
-  displayProducts() {
-    return this.httpClient.get(
+  displayProducts():Observable<IProduct[]> {
+    return this.httpClient.get<IProduct[]>(
       "http://localhost:8080/products"
     )
   }
@@ -36,5 +38,10 @@ export class HttpService {
       "http://localhost:8080/carts",
       {id}
     )
+  }
+
+  // CATEGORIES
+  GET_CATEGORIES():Observable<ICategory[]>{
+    return this.httpClient.get<ICategory[]>("http://localhost:8080/Category")
   }
 }

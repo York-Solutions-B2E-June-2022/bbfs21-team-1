@@ -1,21 +1,6 @@
-<div>
-  <h4>(☞°ヮ°)☞SomeStore☜(°ヮ°☜)
-    <div class="button-group">
-      <app-logout></app-logout>
-    </div>
-    <!--      TODO toggle between these depending on whether current user exists-->
-    <div class="button-group">
-      <button class="btn btn-primary">User Login</button>
-    </div>
-    <!--     TODO ^this should just redirect to user login/register new user (public) page^-->
-  </h4>
-</div>
-<br>
-<app-register></app-register>
-<br>
-<app-login></app-login>
-<br>
-<app-shop></app-shop>
-<br>
-<app-shopping-cart></app-shopping-cart>
-<app-edit-profile></app-edit-profile>
+<app-header></app-header>
+<app-navigation></app-navigation>
+<main>
+  <router-outlet></router-outlet>
+</main>
+

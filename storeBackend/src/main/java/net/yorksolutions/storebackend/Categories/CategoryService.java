@@ -15,6 +15,10 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public Iterable<Category> GET_ALL_CATEGORIES(){
+        return this.categoryRepository.findAll();
+    }
+
     public void create(String name) {
         Optional<Category> existingCategory = categoryRepository.findByName(name);
         if (existingCategory.isPresent()) {

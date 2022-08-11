@@ -1,13 +1,6 @@
-h4 {
-  background-image: linear-gradient(to right, darkorchid, lightseagreen);
-  font-family: "Marker Felt", serif;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px black;
-  padding: 10px;
-  color: mintcream;
-}
-
-.button-group {
-  display: flex;
-  flex-direction: row-reverse;
+main {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem;
 }

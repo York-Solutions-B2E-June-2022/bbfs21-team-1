@@ -1,0 +1,17 @@
+<div class="filter">
+  <h3>All Items</h3>
+  <div>
+    <label for="filterBy">Category</label>
+    <select id="filterBy" [ngModel]="filter" (ngModelChange)="onFilterChange($event)">
+      <option disabled selected>Select Category</option>
+      <option>All</option>
+      <option *ngFor="let cat of categoryList">{{cat.name}}</option>
+    </select>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngFor="let product of filteredList">
+    <app-product [product]="product"></app-product>
+  </div>
+</div>

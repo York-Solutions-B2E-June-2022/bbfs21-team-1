@@ -6,6 +6,7 @@
 .form {
   width: 500px;
   padding: 30px;
+  background-color: lightseagreen;
 }
 
 .row {
@@ -20,7 +21,9 @@ input {
   display: flex;
   gap: 20px;
   margin-top: 20px;
+  justify-content: flex-end;
 }
+
 
 h3 {
   font-weight: bold;

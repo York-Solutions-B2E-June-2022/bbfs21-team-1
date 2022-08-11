@@ -21,4 +21,12 @@ body {
 
 * {
   outline: 1px dotted magenta;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
 }

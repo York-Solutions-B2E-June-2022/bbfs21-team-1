@@ -1,0 +1,9 @@
+<header>
+	<a routerLink="/">(☞°ヮ°)☞SomeStore☜(°ヮ°☜)</a>
+	<!--TODO toggle between these depending on whether current user exists-->
+	<button class="btn btn-primary" (click)="onClick()">Log out</button>
+	<!--TODO this should just redirect to user login/register new user (public) page-->
+	<!--HTML tip from Dan; If clicking on something takes you to another page,
+		use the <a> tag. If it changes something on your current page, use <button>-->
+	<a class="btn btn-primary" routerLink="/signup">User Login</a>
+</header>
