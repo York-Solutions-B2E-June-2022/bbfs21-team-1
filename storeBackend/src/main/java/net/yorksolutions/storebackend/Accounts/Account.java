@@ -22,7 +22,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long id, String username, String password, String name, String email, String status) {
+    public Account(String username, String password, String name, String email, String status) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -49,6 +49,8 @@ public class Account {
     public String getStatus() {
         return status;
     }
-
-    public Long getId() {return id; }
+    
+    public Long getId() {
+        return id;
+    }
 }

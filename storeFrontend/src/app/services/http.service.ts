@@ -37,6 +37,13 @@ export class HttpService {
     ) as Observable<any>
   }
 
+  editUser(name: string, username: string, email: string, password: string, status: string, id: number) {
+    return this.httpClient.put(
+      "http://localhost:8080/account/edit",
+      {name, username, email, password, status, id}
+    ) as Observable<any>
+  }
+
   //PRODUCTS
   displayProducts():Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(

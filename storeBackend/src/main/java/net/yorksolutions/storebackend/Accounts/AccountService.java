@@ -29,7 +29,7 @@ public class AccountService {
         if (existingAccount.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Account account = new Account(id, username, password, name, email, status);
+        Account account = new Account(username, password, name, email, status);
         accountRepository.save(account);
     }
     public Optional<Account> login(String username, String password) {
