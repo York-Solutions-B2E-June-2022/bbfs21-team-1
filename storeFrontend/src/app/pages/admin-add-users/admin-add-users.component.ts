@@ -32,6 +32,10 @@ export class ADMINAddUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(){
+    this.httpService.DELETE_USER(this.newUser.id).pipe(first()).subscribe()
+  }
+
   emptyCheck():boolean{
     for (const prop in this.newUser){
       if (this.newUser[prop] == "") {

@@ -1,7 +1,9 @@
 import {IProduct} from "./IProduct";
 
-export interface ICartItem extends IProduct{
-  //todo use this to tie to quantity counter in shopping cart
-  price: number;
-  count: number;
+export interface ICartItem {
+  cart: {};
+  id: number;
+  pastOrder: boolean;
+  product: IProduct;
+  quantity: number;
 }

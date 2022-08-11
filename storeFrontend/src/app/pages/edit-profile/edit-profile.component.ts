@@ -22,7 +22,6 @@ export class EditProfileComponent implements OnInit {
     this.username = dataService.currentUser.username
     this.email = dataService.currentUser.email
     this.password = dataService.currentUser.password!
-
   }
 
   ngOnInit(): void {

@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICartItem} from "../../interfaces/ICartItem";
+import {HttpService} from "../../services/http.service";
+import {first} from "rxjs";
 
 @Component({
   selector: 'app-cart-item',
@@ -10,7 +12,18 @@ export class CartItemComponent implements OnInit {
 
   @Input() cartItem!: ICartItem;
 
-  constructor() { }
+  @Output() onCountChange = new EventEmitter();
+
+  count!: number;
+
+  constructor(private httpService: HttpService) {
+    this.httpService = httpService;
+  }
+
+  countChange(quantity: number) {
+    this.httpService.countChange(quantity, this.cartItem.id).pipe(first()).subscribe();
+    this.onCountChange.emit();
+  }
 
   ngOnInit(): void {
   }

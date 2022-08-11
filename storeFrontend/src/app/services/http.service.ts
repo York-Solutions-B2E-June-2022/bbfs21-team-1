@@ -27,7 +27,8 @@ export class HttpService {
     return this.httpClient.put('http://localhost:8080/account/edit', {...userObject})
   }
 
-  DELETE_USER(id: number){
+  DELETE_USER(id:number){
+
     return this.httpClient.delete(`http://localhost:8080/account/${id}`)
   }
 
@@ -52,17 +53,22 @@ export class HttpService {
     )
   }
 
-  addItemToCart(id: number, cartId: number, productId: number, quantity: number){
+  addItemToCart(userId: number, productId: number){
     return this.httpClient.post(
-      "http://localhost:8080/items",
-      {id, cartId, productId, quantity}
+      "http://localhost:8080/carts/add",
+      {userId, productId}
     ) as Observable<ICartItem>
   }
 
-  displayCartItemList(id: number){
-    return this.httpClient.post(
-      "http://localhost:8080/carts",
-      {id}
+  displayCartItemList(userId: number){
+    return this.httpClient.get<ICartItem[]>(
+      `http://localhost:8080/carts/${userId}`
+    )
+  }
+
+  countChange(quantity: number, id: number){
+    return this.httpClient.post("http://localhost:8080/items/edit",
+      {quantity, id}
     )
   }
 

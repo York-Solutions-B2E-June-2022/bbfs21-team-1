@@ -4,7 +4,7 @@
 
 <div class="container">
   <div *ngFor="let cartItem of cartItemList">
-    <app-cart-item [cartItem]="cartItem"></app-cart-item>
+    <app-cart-item [cartItem]="cartItem" (onCountChange)="updateTotals()"></app-cart-item>
   </div>
 
   <h4>Summary</h4>

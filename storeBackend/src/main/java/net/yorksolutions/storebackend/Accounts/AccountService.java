@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 public class AccountService {
 
-    AccountRepository accountRepository;
     CartRepository cartRepository;
+    AccountRepository accountRepository;
     public AccountService(AccountRepository accountRepository, CartRepository cartRepository) {
         this.accountRepository = accountRepository;
         this.cartRepository = cartRepository;
@@ -35,8 +35,8 @@ public class AccountService {
         }
         Account account = new Account(username, password, name, email, status);
         Cart cart = new Cart(account);
-        cartRepository.save(cart);
         accountRepository.save(account);
+        cartRepository.save(cart);
     }
 
     public Optional<Account> login(String username, String password) {
