@@ -4,6 +4,7 @@ import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
 import {IProduct} from "../interfaces/IProduct";
 import {ICartItem} from "../interfaces/ICartItem";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class DataService {
     this.httpService.login(username, password).pipe(first()).subscribe({
       next: (data) => {
         this.user = data;
+        console.log(data);
         this.currentUser = this.user;
         this.currentUser$.next(this.currentUser);
       },
@@ -46,18 +48,30 @@ export class DataService {
     this.currentUser$.next(null);
   }
 
+
+
   addToCart() {
     //logic here to add item to cart - tie to http service?
   }
 
   // Edit-Profile functions
 
-  onSaveEdit() {
-
+  onSaveEdit(name: string, username: string, email: string, password: string, status: string) {
+    this.httpService.editUser(name, username, email, password, status, this.currentUser.id).pipe(first()).subscribe({
+      next: (data) => {
+        this.user = data;
+        this.currentUser = this.user;
+        this.currentUser$.next(this.currentUser);
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
   }
-  onEditProfile() {
 
-  }
+  // onEditProfile() {
+  // }
+
   onCancelEdit() {
 
   }

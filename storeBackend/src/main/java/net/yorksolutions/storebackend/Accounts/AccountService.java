@@ -16,7 +16,7 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public void create(Long id, String username, String password, String name, String email, String status) {
+    public void create(String username, String password, String name, String email, String status) {
         if (username == null || password == null || name == null || email == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -24,7 +24,7 @@ public class AccountService {
         if (existingAccount.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        Account account = new Account(id, username, password, name, email, status);
+        Account account = new Account(username, password, name, email, status);
         accountRepository.save(account);
     }
     public Optional<Account> login(String username, String password) {
