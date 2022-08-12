@@ -23,14 +23,14 @@
 			<label for="status">Access</label>
 			<select id="status" name="status" [(ngModel)]="newUser.status">
 				<option selected disabled>Select Access</option>
-				<option>User</option>
+				<option>Customer</option>
 				<option>Shop Keeper</option>
 				<option>Admin</option>
 			</select>
 		</div>
 		<div class="btn-container">
 			<button class="btn btn-main" (click)="onSave()">Save</button>
-			<a class="btn btn-secondary" routerLink="/users">Cancel</a>
+			<a class="btn btn-secondary" routerLink="/users" (click)="onCancel()">Cancel</a>
 
 		</div>
 	</form>

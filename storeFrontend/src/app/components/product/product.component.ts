@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
   }
 
   onClick() {
-    this.userId = this.dataService.currentUser.id!;
+    this.userId = this.dataService.currentUser!.id!;
     this.dataService.addToCart(this.userId, this.product.id);
     console.log(this.userId, this.product.id)
   }

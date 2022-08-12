@@ -28,7 +28,6 @@ export class HttpService {
   }
 
   DELETE_USER(id:number){
-
     return this.httpClient.delete(`http://localhost:8080/account/${id}`)
   }
 
@@ -76,4 +75,14 @@ export class HttpService {
   GET_CATEGORIES():Observable<ICategory[]>{
     return this.httpClient.get<ICategory[]>("http://localhost:8080/Category")
   }
+  CREATE_CATEGORY(categoryName:string){
+    return this.httpClient.post('http://localhost:8080/Category/create',{name:categoryName})
+  }
+  EDIT_CATEGORY(category:ICategory){
+    return this.httpClient.put('http://localhost:8080/Category',{...category})
+  }
+  DELETE_CATEGORY(categoryId:number){
+    return this.httpClient.delete(`http://localhost:8080/Category/${categoryId}`)
+  }
+
 }

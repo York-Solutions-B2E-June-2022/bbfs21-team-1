@@ -6,6 +6,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
+import static net.yorksolutions.storebackend.Helpers.emptyCheck;
+
 @Service
 public class CategoryService {
 
@@ -37,8 +39,8 @@ public class CategoryService {
 
         categoryRepository.save(existingCategory.get());
     }
-    public void delete(CategoryAuthRequest requestBody) {
-        Optional<Category> existingCategory = categoryRepository.findById(requestBody.id);
-        categoryRepository.delete(existingCategory.get());
+    public void delete(Long id) {
+        Category category = emptyCheck(categoryRepository.findById(id));
+        categoryRepository.delete(category);
     }
 }

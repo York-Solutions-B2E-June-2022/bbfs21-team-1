@@ -14,15 +14,16 @@ export class CartItemComponent implements OnInit {
 
   @Output() onCountChange = new EventEmitter();
 
-  count!: number;
-
   constructor(private httpService: HttpService) {
     this.httpService = httpService;
   }
 
   countChange(quantity: number) {
-    this.httpService.countChange(quantity, this.cartItem.id).pipe(first()).subscribe();
-    this.onCountChange.emit();
+    this.httpService.countChange(quantity, this.cartItem.id).pipe(first()).subscribe({
+      next: value => {
+        this.onCountChange.emit()
+      }
+    });
   }
 
   ngOnInit(): void {

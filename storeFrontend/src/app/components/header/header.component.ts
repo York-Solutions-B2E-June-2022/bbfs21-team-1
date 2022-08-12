@@ -10,13 +10,13 @@ import {Subscription} from "rxjs";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  currentUser: IUser
+  currentUser: IUser|null
   currentUserSub: Subscription
 
   constructor(private dataService: DataService) {
     this.currentUser = this.dataService.currentUser;
     this.currentUserSub = dataService.currentUser$.subscribe( (user) => {
-      this.currentUser = user!;
+      this.currentUser = user;
     });
   }
 

@@ -25,7 +25,7 @@ public class AccountService {
         return this.accountRepository.findAll();
     }
 
-    public void create(String username, String password, String name, String email, String status) {
+    public Account create(String username, String password, String name, String email, String status) {
         if (Objects.equals(username, "") || Objects.equals(password, "") || Objects.equals(name, "") || Objects.equals(email, "")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -33,10 +33,14 @@ public class AccountService {
         if (existingAccount.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        if ( accountRepository.count() == 0 ) {
+            status = "Admin";
+        }
         Account account = new Account(username, password, name, email, status);
         Cart cart = new Cart(account);
         accountRepository.save(account);
         cartRepository.save(cart);
+        return account;
     }
 
     public Optional<Account> login(String username, String password) {
@@ -65,6 +69,8 @@ public class AccountService {
         if (existingAccount.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        Cart cart = cartRepository.findByAccount(existingAccount.get());
+        cartRepository.delete(cart);
         accountRepository.delete(existingAccount.get());
     }
 

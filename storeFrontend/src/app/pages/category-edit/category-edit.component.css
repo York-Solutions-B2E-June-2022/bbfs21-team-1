@@ -1,0 +1,26 @@
+.pg-container {
+    position: relative;
+}
+form {
+    max-width: 500px;
+    margin-top: 32px;
+}
+.btn {
+    width: 100px;
+}
+.btn-main {
+    background-color: var(--main);
+    color: white;
+}
+.danger {
+    color: red;
+}
+.success {
+    color: green;
+}
+.btn-danger {
+    width: fit-content;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

@@ -1,0 +1,15 @@
+<div class="pg-container">
+	<header>
+		<h3>Categories</h3>
+		<a class="btn" routerLink="/categories/add">New</a>
+	</header>
+	<table>
+		<tbody>
+		<tr *ngFor="let cat of categoryList">
+			<td>{{cat.id}}</td>
+			<td class="bold">{{cat.name}}</td>
+			<td><a routerLink="/categories/add" class="btn" (click)="onEdit(cat)">Edit</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>

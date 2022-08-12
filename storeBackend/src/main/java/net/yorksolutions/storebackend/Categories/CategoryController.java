@@ -30,9 +30,9 @@ public class CategoryController {
         categoryService.edit(requestBody);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody CategoryAuthRequest requestBody) {
-        categoryService.delete(requestBody);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        categoryService.delete(id);
     }
 }
 
