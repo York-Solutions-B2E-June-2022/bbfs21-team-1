@@ -54,7 +54,7 @@ export class ADMINAddUsersComponent implements OnInit {
           next: () => this.success = "User Updated!",
           error: err => console.error(err)
         })
-        this.dataService.SET_USER_EDIT()
+        this.onCancel()
       } else {
         this.httpService.createUser(
             this.newUser.name,
@@ -73,8 +73,10 @@ export class ADMINAddUsersComponent implements OnInit {
         password: "",
         status: ""
       }
-      setTimeout(()=>{ this.success = "" }, 5000)
+      setTimeout(()=>{ this.success = "" }, 2500)
     }
   }
-
+  onCancel(){
+    this.dataService.SET_USER_EDIT()
+  }
 }

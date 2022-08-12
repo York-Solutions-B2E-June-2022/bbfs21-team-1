@@ -2,8 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
+import {Router} from "@angular/router";
 import {ICartItem} from "../interfaces/ICartItem";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {ICategory} from "../interfaces/ICategory";
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,24 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 export class DataService {
 
   user!: IUser;
-  currentUser!: IUser;
+
+  // currentUser: IUser = {
+  //   id: 20,
+  //   username: "user1",
+  //   name: "Kelsey J",
+  //   password: "pass",
+  //   email: "email@email.com",
+  //   status: "Admin"
+  // }
+  currentUser: IUser|null = null
   currentUser$ = new Subject<IUser | null>();
 
-
-  //ADMIN User Edit Variables
+  //SHOPKEEPER Edit Variables
+  categoryToEdit:ICategory|null = null
+  //ADMIN Edit Variables
   userToEdit:IUser|null = null
-  // userToEdit$ = new Subject<IUser>()
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private router:Router) {
   }
 
   onRegister(name: string, username: string, email: string, password: string, status: string) {
@@ -31,29 +42,25 @@ export class DataService {
         console.error(error)
       }
     })
-    console.log("account created successfully");
   }
 
   onLogin(username: string, password: string) {
     this.httpService.login(username, password).pipe(first()).subscribe({
       next: (data) => {
-        this.user = data;
-        console.log(data);
-        this.currentUser = this.user;
+        this.currentUser = data;
         this.currentUser$.next(this.currentUser);
+        console.log(this.currentUser)
+        this.router.navigate(["/"])
       },
       error: (error) => {
         console.error(error)
       }
     })
-    console.log(this.user);
-    console.log(this.currentUser);
-    console.log(this.currentUser$);
-    console.log("test");
   }
 
   onLogout() {
-    this.currentUser$.next(null);
+    this.currentUser = null;
+    this.currentUser$.next(this.currentUser);
   }
 
   addToCart(userId: number, productId: number,) {
@@ -70,7 +77,7 @@ export class DataService {
   // Edit-Profile functions
 
   onSaveEdit(name: string, username: string, email: string, password: string, status: string) {
-    this.httpService.editUser(name, username, email, password, status, this.currentUser.id!).pipe(first()).subscribe({
+    this.httpService.editUser(name, username, email, password, status, this.currentUser!.id!).pipe(first()).subscribe({
       next: (data) => {
         this.user = data;
         this.currentUser = this.user;
@@ -92,10 +99,14 @@ export class DataService {
 
   }
 
+  //SHOPKEEPER FUNCTIONS
+  SET_CATEGORY_EDIT(category:ICategory|null = null){
+    this.categoryToEdit = category
+  }
+
   //ADMIN User Edit Functions
   SET_USER_EDIT(user:IUser|null = null){
     this.userToEdit = user
-    // this.currentUser$.next(user)
   }
 
 }

@@ -33,6 +33,9 @@ public class AccountService {
         if (existingAccount.isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        if ( accountRepository.count() == 0 ) {
+            status = "Admin";
+        }
         Account account = new Account(username, password, name, email, status);
         Cart cart = new Cart(account);
         accountRepository.save(account);
@@ -65,6 +68,8 @@ public class AccountService {
         if (existingAccount.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        Cart cart = cartRepository.findByAccount(existingAccount.get());
+        cartRepository.delete(cart);
         accountRepository.delete(existingAccount.get());
     }
 

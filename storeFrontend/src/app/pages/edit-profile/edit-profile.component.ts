@@ -18,10 +18,10 @@ export class EditProfileComponent implements OnInit {
 
 
   constructor(private dataService: DataService, private httpService: HttpService) {
-    this.name = dataService.currentUser.name
-    this.username = dataService.currentUser.username
-    this.email = dataService.currentUser.email
-    this.password = dataService.currentUser.password!
+    this.name = dataService.currentUser!.name
+    this.username = dataService.currentUser!.username
+    this.email = dataService.currentUser!.email
+    this.password = dataService.currentUser!.password!
   }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class EditProfileComponent implements OnInit {
     this.dataService.onCancelEdit()
   }
   onDelete() {
-    this.httpService.DELETE_USER(this.dataService.currentUser.id!).pipe(first()).subscribe()
+    this.httpService.DELETE_USER(this.dataService.currentUser!.id!).pipe(first()).subscribe()
 
     console.log("Deleting User");
   }

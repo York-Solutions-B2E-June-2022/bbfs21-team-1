@@ -13,13 +13,10 @@ import {ICartItem} from "../../interfaces/ICartItem";
 })
 export class ShoppingCartComponent implements OnInit {
 
-  cartItem!: ICartItem;
   cartItemList!: Array<ICartItem>
-  //cartItemList$: Subscription;
 
   //todo add correct tax rate
   taxRate: number = 0.07;
-
   cartSubtotal: number = 0;
   taxCost: number = 0;
   shippingCost: number = 0;
@@ -32,11 +29,14 @@ export class ShoppingCartComponent implements OnInit {
 
 
   constructor(private dataService: DataService, private httpService: HttpService) {
-    this.id = dataService.currentUser.id!;
-    httpService.displayCartItemList(this.id).pipe(first()).subscribe({
+    this.id = dataService.currentUser!.id!;
+    this.updateList()
+  }
+
+  updateList(){
+    this.httpService.displayCartItemList(this.id).pipe(first()).subscribe({
       next: (data) => {
         this.cartItemList = data;
-        console.log(data);
         this.updateTotals();
       },
       error: (error) => {
@@ -46,7 +46,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   updateTotals() {
-    console.log("hello world");
     this.cartSubtotal = 0;
 
     this.cartItemList.forEach((i) => {

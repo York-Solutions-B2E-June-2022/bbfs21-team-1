@@ -11,6 +11,8 @@ import { ProductComponent } from './components/product/product.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
+import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     HeaderComponent,
     routingComponents,
     NavigationComponent,
+    InventoryComponent,
+    CategoryEditComponent,
   ],
   imports: [
     BrowserModule,

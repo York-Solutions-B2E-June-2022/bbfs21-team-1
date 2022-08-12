@@ -76,4 +76,8 @@ export class HttpService {
   GET_CATEGORIES():Observable<ICategory[]>{
     return this.httpClient.get<ICategory[]>("http://localhost:8080/Category")
   }
+  CREATE_CATEGORY(categoryName:string){
+    return this.httpClient.post('http://localhost:8080/Category/create',{name:categoryName})
+  }
+
 }

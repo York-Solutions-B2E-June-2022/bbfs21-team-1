@@ -1,0 +1,16 @@
+<div class="pg-container">
+	<h3>{{isEditing ? "Edit" : "Create"}} Category</h3>
+	<strong *ngIf="error" class="danger">{{error}}</strong>
+	<strong *ngIf="success" class="success">{{success}}</strong>
+	<form>
+		<div class="dt-input">
+			<label for="name">Name</label>
+			<input id="name" name="name" [(ngModel)]="category.name">
+		</div>
+		<div class="btn-container">
+			<button class="btn btn-main" (click)="onSave()">Save</button>
+			<a class="btn btn-secondary" routerLink="/categories" (click)="onCancel()">Cancel</a>
+		</div>
+	</form>
+	<a *ngIf="isEditing" class="btn btn-danger" (click)="onDelete()">Delete</a>
+</div>
