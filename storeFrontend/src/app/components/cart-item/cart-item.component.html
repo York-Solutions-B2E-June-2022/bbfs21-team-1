@@ -12,7 +12,13 @@
     <input id="quantity" type="number" min="1" [ngModel]="cartItem.quantity" (ngModelChange)="countChange($event)">
   </div>
   <div class="button-group">
-    <button id="removeFromCart" class="btn btn-secondary">Remove</button>
+    <div *ngIf="cartItem.pastOrder == true; then pastOrder, else cart"></div>
+    <ng-template #pastOrder>
+      <button class="btn btn-secondary">Order Again</button>
+    </ng-template>
+    <ng-template #cart>
+      <button id="removeFromCart" class="btn btn-secondary">Remove</button>
+    </ng-template>
   </div>
 </div>
 
