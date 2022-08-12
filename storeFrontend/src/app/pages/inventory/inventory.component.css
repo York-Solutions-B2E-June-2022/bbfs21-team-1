@@ -1,0 +1,20 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+a.btn {
+    background-color: black;
+    color: white;
+}
+td:first-child {
+    width: 6%;
+}
+td img {
+    width: 100%;
+}
+.discontinued {
+    text-align: center;
+    font-size: 2rem;
+    color: #7eaf96;
+}

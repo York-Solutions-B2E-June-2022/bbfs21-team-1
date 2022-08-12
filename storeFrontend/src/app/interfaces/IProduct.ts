@@ -2,16 +2,16 @@ import {ICategory} from "./ICategory";
 
 export interface IProduct {
   id: number;
-  imgUrl: string;
+  imgUrl: string|undefined;
   name: string;
   description: string;
   available: string;
   category: ICategory;
   mapPrice: number;
-  mapDate: string;
+  mapDate: string|undefined;
   retailPrice: number;
-  retailDate:string
+  retailDate:string|undefined
   salePrice: number;
-  saleDate: Date;
+  saleDate: string;
   discontinued:boolean;
 }

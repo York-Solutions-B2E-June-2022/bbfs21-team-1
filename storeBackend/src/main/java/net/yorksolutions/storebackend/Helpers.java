@@ -3,6 +3,8 @@ package net.yorksolutions.storebackend;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Helpers {
@@ -23,6 +25,13 @@ public class Helpers {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         } else {
             return value;
+        }
+    }
+    public static void checkValues(String[] values){
+        for (int i = 0; i < values.length; i++){
+            if ( Objects.equals(values[i], "") || values[i] == null) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            }
         }
     }
 }

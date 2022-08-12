@@ -55,6 +55,7 @@ export class CategoryEditComponent implements OnInit {
       }
       this.error = ""
       this.category = {id: undefined, name: ""}
+      this.isEditing = false
       setTimeout(()=>{ this.success = "" }, 2500)
     } else {
       this.error = "Field cannot be empty"

@@ -1,0 +1,56 @@
+.pg-container {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 5rem;
+}
+img, .upload {
+    margin-right: auto;
+}
+.upload {
+    height: 500px;
+    width: 500px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.upload button.btn {
+    width: fit-content;
+    background-color: #979797;
+    border-color: #979797;
+}
+form {
+    max-width: 500px;
+    margin-top: 32px;
+}
+.btn {
+    width: 100px;
+}
+.btn-main {
+    background-color: var(--main);
+    color: white;
+}
+.danger {
+    color: red;
+}
+.success {
+    color: green;
+}
+.btn-danger {
+    width: fit-content;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+input:not(input[type=checkbox]), select, textarea {
+    padding: .25rem;
+    width: 100%;
+}
+input[type=checkbox] {
+    margin-left: 1rem;
+}

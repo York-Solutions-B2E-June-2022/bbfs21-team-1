@@ -49,9 +49,12 @@ public class ProductService {
     public void EDIT_PRODUCT(ProductRequest requestBody){
         System.out.println("editing product...");
         Product product = emptyCheck(repository.findById(requestBody.id));
+        Category category = emptyCheck(categoryRepository.findByName(requestBody.category));
         product.name = requestBody.name;
         product.description = requestBody.description;
+        product.category = category;
         product.available = requestBody.available;
+        product.discontinued = requestBody.discontinued;
         product.mapPrice = requestBody.mapPrice;
         product.retailPrice = requestBody.retailPrice;
         product.salePrice = requestBody.salePrice;

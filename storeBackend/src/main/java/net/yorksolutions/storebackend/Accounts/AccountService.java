@@ -11,6 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Objects;
 import java.util.Optional;
 
+import static net.yorksolutions.storebackend.Helpers.*;
+
 @Service
 public class AccountService {
 
@@ -25,53 +27,35 @@ public class AccountService {
         return this.accountRepository.findAll();
     }
 
-    public Account create(String username, String password, String name, String email, String status) {
-        if (Objects.equals(username, "") || Objects.equals(password, "") || Objects.equals(name, "") || Objects.equals(email, "")) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Optional<Account> existingAccount = accountRepository.findByUsername(username);
-        if (existingAccount.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        if ( accountRepository.count() == 0 ) {
-            status = "Admin";
-        }
-        Account account = new Account(username, password, name, email, status);
+    public Account create(AccountAuthRequest requestBody) {
+        checkValues(new String[]{requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status});
+        presenceCheck(accountRepository.findByUsername(requestBody.username)); //returns BAD REQUEST if true
+        if ( accountRepository.count() == 0 ) {requestBody.status = "Admin";}
+        Account account = new Account(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
         Cart cart = new Cart(account);
         accountRepository.save(account);
         cartRepository.save(cart);
         return account;
     }
 
-    public Optional<Account> login(String username, String password) {
-        Optional<Account> foundAccount = accountRepository.findByUsernameAndPassword(username, password);
-        if (foundAccount.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        return foundAccount;
+    public Account login(String username, String password) {
+        return emptyCheck(accountRepository.findByUsernameAndPassword(username, password));
     }
 
     public void edit(AccountAuthRequest requestBody) {
-        Optional<Account> existingAccount = accountRepository.findById(requestBody.id);
-        if (existingAccount.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        existingAccount.get().name = requestBody.name;
-        existingAccount.get().username = requestBody.username;
-        existingAccount.get().email = requestBody.email;
-        existingAccount.get().password = requestBody.password;
-        existingAccount.get().status = requestBody.status;
-
-        accountRepository.save(existingAccount.get());
+        Account existingAccount = emptyCheck(accountRepository.findById(requestBody.id));
+        existingAccount.name = requestBody.name;
+        existingAccount.username = requestBody.username;
+        existingAccount.email = requestBody.email;
+        existingAccount.password = requestBody.password;
+        existingAccount.status = requestBody.status;
+        accountRepository.save(existingAccount);
     }
     public void delete(Long id) {
-        Optional<Account> existingAccount = accountRepository.findById(id);
-        if (existingAccount.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        Cart cart = cartRepository.findByAccount(existingAccount.get());
+        Account existingAccount = emptyCheck(accountRepository.findById(id));
+        Cart cart = cartRepository.findByAccount(existingAccount);
         cartRepository.delete(cart);
-        accountRepository.delete(existingAccount.get());
+        accountRepository.delete(existingAccount);
     }
 
 }

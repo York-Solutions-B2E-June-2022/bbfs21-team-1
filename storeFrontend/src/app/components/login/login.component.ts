@@ -8,8 +8,8 @@ import {DataService} from "../../services/data.service";
 })
 export class LoginComponent implements OnInit {
 
-  username!: string;
-  password!: string
+  username:string = ""
+  password:string = ""
 
   constructor(private dataService: DataService) { }
 
@@ -17,6 +17,6 @@ export class LoginComponent implements OnInit {
   }
 
   onClick() {
-    this.dataService.onLogin(this.username, this.password);
+      this.dataService.onLogin(this.username, this.password);
   }
 }
