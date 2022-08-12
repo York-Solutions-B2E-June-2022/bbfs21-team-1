@@ -18,6 +18,9 @@ export class DataService {
   //ADMIN Edit Variables
   userToEdit:IUser|null = null
 
+  loginError!: string;
+  registrationError!: string;
+
   constructor(private httpService: HttpService, private router:Router) {
   }
 
@@ -35,7 +38,7 @@ export class DataService {
     })
   }
 
-  onLogin(username: string, password: string) {
+  onLogin(username: string, password: string): string | void {
     this.httpService.login(username, password).pipe(first()).subscribe({
       next: (data) => {
         this.currentUser = data;
@@ -43,8 +46,9 @@ export class DataService {
         console.log(this.currentUser)
         this.router.navigate(["/"])
       },
-      error: (error) => {
-        console.error(error)
+      error: (loginError) => {
+        loginError = "Username and/or password incorrect."
+        this.loginError = loginError;
       }
     })
   }
@@ -59,8 +63,9 @@ export class DataService {
      next: (data) => {
        //this.cartItem = data;
      },
-     error: (error) => {
-       console.error(error)
+     error: (registrationError) => {
+       registrationError = "Registration unsuccessful. No fields may be left blank."
+       this.registrationError = registrationError;
      }
    })
   }

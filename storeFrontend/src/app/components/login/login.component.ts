@@ -9,7 +9,8 @@ import {DataService} from "../../services/data.service";
 export class LoginComponent implements OnInit {
 
   username!: string;
-  password!: string
+  password!: string;
+  error!: string;
 
   constructor(private dataService: DataService) { }
 
@@ -18,5 +19,6 @@ export class LoginComponent implements OnInit {
 
   onClick() {
     this.dataService.onLogin(this.username, this.password);
+    this.error = this.dataService.loginError;
   }
 }

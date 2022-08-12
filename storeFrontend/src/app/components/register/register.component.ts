@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   email!: string;
   password!: string;
   status:string = "Customer"
+  error!: string;
 
 
   constructor(private dataService: DataService) {}
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onClick() {
-    this.dataService.onRegister(this.name, this.username, this.email, this.password, this.status);
-
+   this.dataService.onRegister(this.name, this.username, this.email, this.password, this.status);
+   this.error = this.dataService.registrationError;
   }
+
 }

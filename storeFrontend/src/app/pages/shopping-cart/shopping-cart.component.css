@@ -14,7 +14,13 @@ h4 {
 }
 
 .totals {
-  border: solid 2px black;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  padding: 15px;
+  width: 100%;
+  max-width: 350px;
+  background-color: lightseagreen;
 }
 
 .endTotal {
@@ -23,5 +29,7 @@ h4 {
 
 .input-group {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  align-content: flex-start;
+  padding: 15px;
 }
