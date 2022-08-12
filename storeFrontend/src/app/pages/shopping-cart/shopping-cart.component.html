@@ -6,20 +6,26 @@
   <div *ngFor="let cartItem of cartItemList">
     <app-cart-item [cartItem]="cartItem" (onCountChange)="updateTotals()"></app-cart-item>
   </div>
+</div>
 
-  <h4>Summary</h4>
-  <label for="coupon">Coupon Code</label>
-  <input id="coupon">
 
-  <div>
-    <h6>Coupon Discount: </h6>
-    <h6>Sale Discount: </h6>
-    <h6>Subtotal: {{cartSubtotal | currency}}</h6>
-    <h6>Tax: {{taxCost | currency}}</h6>
-    <h6>Shipping: {{shippingCost | currency}}</h6>
+<div class="totals">
+  <div class="input-group">
+    <h4>Summary</h4>
+    <label for="coupon">Coupon Code</label>
+    <input id="coupon">
+  </div>
+  <h6>Coupon Discount: </h6>
+  <h6>Sale Discount: </h6>
+  <h6>Subtotal: {{cartSubtotal | currency}}</h6>
+  <h6>Tax: {{taxCost | currency}}</h6>
+  <h6>Shipping: {{shippingCost | currency}}</h6>
+  <div class="endTotal">
     <h6>Total: {{cartTotal | currency}}</h6>
   </div>
-  <div>
-    <button class="btn btn-primary">Checkout</button>
-  </div>
 </div>
+
+<div>
+  <button class="btn btn-primary">Checkout</button>
+</div>
+
