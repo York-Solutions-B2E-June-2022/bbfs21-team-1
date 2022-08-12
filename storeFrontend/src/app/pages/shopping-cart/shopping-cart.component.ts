@@ -16,13 +16,11 @@ export class ShoppingCartComponent implements OnInit {
 
   cartItemList!: Array<ICartItem>
 
-  //todo add correct tax rate
   taxRate: number = 0.07;
   cartSubtotal: number = 0;
   taxCost: number = 0;
   shippingCost: number = 0;
   cartTotal: number = 0;
-
   id!: number
 
   //todo coupon discount

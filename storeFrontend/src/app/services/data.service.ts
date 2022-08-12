@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
-import {Router} from "@angular/router";
 import {ICategory} from "../interfaces/ICategory";
 
 @Injectable({
@@ -18,39 +17,12 @@ export class DataService {
   //ADMIN Edit Variables
   userToEdit:IUser|null = null
 
-  loginError!: string;
-  registrationError!: string;
-
-  constructor(private httpService: HttpService, private router:Router) {
+  constructor(private httpService: HttpService) {
   }
 
-  onRegister(name: string, username: string, email: string, password: string, status: string) {
-    this.httpService.createUser(name, username, email, password, status).pipe(first()).subscribe({
-      next: (data) => {
-        this.currentUser = data
-        this.currentUser$.next(data)
-        console.log(this.currentUser)
-        this.router.navigate(["/"])
-      },
-      error: (error) => {
-        console.error(error)
-      }
-    })
-  }
-
-  onLogin(username: string, password: string): string | void {
-    this.httpService.login(username, password).pipe(first()).subscribe({
-      next: (data) => {
-        this.currentUser = data;
-        this.currentUser$.next(this.currentUser);
-        console.log(this.currentUser)
-        this.router.navigate(["/"])
-      },
-      error: (loginError) => {
-        loginError = "Username and/or password incorrect."
-        this.loginError = loginError;
-      }
-    })
+  setCurrentUser(user: IUser) {
+    this.currentUser = user;
+    this.currentUser$.next(this.currentUser) ;
   }
 
   onLogout() {
@@ -60,12 +32,10 @@ export class DataService {
 
   addToCart(userId: number, productId: number,) {
    this.httpService.addItemToCart(userId, productId).pipe(first()).subscribe({
-     next: (data) => {
-       //this.cartItem = data;
+     next: () => {
      },
-     error: (registrationError) => {
-       registrationError = "Registration unsuccessful. No fields may be left blank."
-       this.registrationError = registrationError;
+     error: (error) => {
+       console.error(error)
      }
    })
   }
@@ -82,7 +52,6 @@ export class DataService {
       }
     })
   }
-
 
   //SHOPKEEPER FUNCTIONS
   SET_CATEGORY_EDIT(category:ICategory|null = null){

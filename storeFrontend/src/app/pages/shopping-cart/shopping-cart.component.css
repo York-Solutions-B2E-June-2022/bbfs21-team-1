@@ -1,9 +1,11 @@
 h3 {
   font-weight: bold;
+  padding-bottom: 30px;
 }
 
 h4 {
   font-weight: bold;
+  padding-bottom: 15px;
 }
 
 .container {
@@ -23,13 +25,18 @@ h4 {
   background-color: lightseagreen;
 }
 
+.calculate {
+  padding-top: 15px;
+}
+
 .endTotal {
   font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  padding: 15px;
 }

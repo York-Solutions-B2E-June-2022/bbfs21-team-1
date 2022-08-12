@@ -13,16 +13,25 @@
   <div class="totals">
     <div class="input-group">
       <h4>Summary</h4>
-      <label for="coupon">Coupon Code</label>
-      <input id="coupon">
-      <button class="btn btn-primary">Apply Coupon</button>
+      <div>
+        <label for="coupon">Coupon Code </label>
+        <select id="coupon">
+<!--          todo these are just examples - ad-->
+          <option value="ineedpants">Free Shipping for Pants</option>
+          <option value="10percentoff200">10% off $200+ Purchase</option>
+        </select>
+      </div>
     </div>
 
     <div class="calculate">
       <h6>Coupon Discount: </h6>
+
       <h6>Sale Discount: </h6>
+
       <h6>Subtotal: {{cartSubtotal | currency}}</h6>
+
       <h6>Tax: {{taxCost | currency}}</h6>
+
       <h6>Shipping: {{shippingCost | currency}}</h6>
     </div>
 
