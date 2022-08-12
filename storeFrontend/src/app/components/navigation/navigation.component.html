@@ -2,7 +2,7 @@
 	<ul>
 		<li><a routerLink="/" class="home">All Products</a></li>
 		<li *ngIf="currentUser"><a routerLink="/cart" routerLinkActive="active">Your Bag</a></li>
-		<li *ngIf="currentUser"><a>Past Orders</a></li>
+		<li *ngIf="currentUser"><a routerLink="/pastOrders" routerLinkActive="active">Past Orders</a></li>
 		<br *ngIf="currentUser && currentUser.status !== 'Customer' then showSK">
 		<ng-template #showSK>
 			<li><a>Inventory</a></li>
