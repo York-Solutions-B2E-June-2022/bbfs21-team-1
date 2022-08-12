@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {first} from "rxjs";
+import {HttpService} from "../../services/http.service";
+import {Router} from "@angular/router";
+import {IUser} from "../../interfaces/IUser";
 
 @Component({
   selector: 'app-register',
@@ -8,20 +12,30 @@ import {DataService} from "../../services/data.service";
 })
 export class RegisterComponent implements OnInit {
 
-  newUser:any = {
-    id: undefined,
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    status: "Customer"
-  }
 
-  constructor(private dataService: DataService) {}
+  name!: string;
+  username!: string;
+  email!: string;
+  password!: string;
+  status: string = "Customer"
+  currentUser: IUser | null = null
+  error!: string;
+
+  constructor(private dataService: DataService, private httpService: HttpService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
-  onClick() {
-      this.dataService.onRegister(this.newUser.name, this.newUser.username, this.newUser.email, this.newUser.password, this.newUser.status)
+
+  onRegister(name: string, username: string, email: string, password: string, status: string) {
+    this.httpService.createUser(name, username, email, password, status).pipe(first()).subscribe({
+      next: (data) => {
+        this.dataService.setCurrentUser(data);
+        this.router.navigate(["/"])
+      },
+      error: () => {
+        this.error = "Registration unsuccessful. Please complete all fields."
+      }
+    })
   }
 }

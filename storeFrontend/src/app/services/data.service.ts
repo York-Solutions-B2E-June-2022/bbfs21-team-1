@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
-import {Router} from "@angular/router";
 import {ICategory} from "../interfaces/ICategory";
 import {IProduct} from "../interfaces/IProduct";
 
@@ -27,12 +26,27 @@ export class DataService {
   //ADMIN Edit Variables
   userToEdit:IUser|null = null
 
-  constructor(private httpService: HttpService, private router:Router) {
+  constructor(private httpService: HttpService) {
+  }
+
+  setCurrentUser(user: IUser) {
+    this.currentUser = user;
+    this.currentUser$.next(this.currentUser) ;
   }
 
   onLogout() {
     this.currentUser = null;
     this.currentUser$.next(this.currentUser);
+  }
+
+  addToCart(userId: number, productId: number,) {
+   this.httpService.addItemToCart(userId, productId).pipe(first()).subscribe({
+     next: () => {
+     },
+     error: (error) => {
+       console.error(error)
+     }
+   })
   }
 
   // Edit-Profile functions

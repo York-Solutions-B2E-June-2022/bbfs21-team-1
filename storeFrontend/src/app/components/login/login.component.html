@@ -10,7 +10,10 @@
       <input id="loginPassword" name="password" type="password" class="form-control" [(ngModel)]="password">
     </div>
     <div class="button-group">
-      <a class="btn btn-primary" (click)="onClick()">Log in</a>
+      <a class="btn btn-primary" (click)="onLogin(username, password)">Log in</a>
+    </div>
+    <div *ngIf="error">
+      {{error}}
     </div>
   </form>
 </div>
