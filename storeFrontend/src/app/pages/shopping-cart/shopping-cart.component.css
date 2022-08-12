@@ -5,3 +5,23 @@ h3 {
 h4 {
   font-weight: bold;
 }
+
+.container {
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 32px;
+  padding: 0;
+}
+
+.totals {
+  border: solid 2px black;
+}
+
+.endTotal {
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row-reverse;
+}

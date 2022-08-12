@@ -55,7 +55,7 @@ export class ShoppingCartComponent implements OnInit {
     })
 
     this.taxCost = this.cartSubtotal * this.taxRate;
-    this.shippingCost = 10; //todo change this $10 flat test rate later
+    this.shippingCost = this.cartSubtotal > 100 ? 0 : 10;
     this.cartTotal = this.cartSubtotal + this.taxCost + this.shippingCost;
   }
 
