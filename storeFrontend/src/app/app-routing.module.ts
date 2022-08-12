@@ -6,6 +6,7 @@ import {ShoppingCartComponent} from "./pages/shopping-cart/shopping-cart.compone
 import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component";
 import {ADMINUsersComponent} from "./pages/admin-users/admin-users.component";
 import {ADMINAddUsersComponent} from "./pages/admin-add-users/admin-add-users.component";
+import {PastOrdersComponent} from "./pages/past-orders/past-orders.component";
 
 const routes:Routes = [
 	{path: "", component: ShopComponent},
@@ -13,7 +14,8 @@ const routes:Routes = [
 	{path:"cart", component: ShoppingCartComponent},
 	{path:"edit", component: EditProfileComponent},
 	{path: "users", component: ADMINUsersComponent },
-	{path: "users/add", component: ADMINAddUsersComponent}
+	{path: "users/add", component: ADMINAddUsersComponent},
+  {path: "pastOrders", component: PastOrdersComponent}
 ]
 
 @NgModule({
