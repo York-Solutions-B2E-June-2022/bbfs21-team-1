@@ -22,7 +22,9 @@ body {
   color: white;
   font-family: 'Poppins', sans-serif;
 }
-
+.bold {
+  font-weight: bold;
+}
 * {
   /*outline: 1px dotted magenta;*/
   margin: 0;

@@ -12,6 +12,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PastOrdersComponent } from './pages/past-orders/past-orders.component';
+import { InventoryComponent } from './pages/inventory/inventory.component';
+import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { PastOrdersComponent } from './pages/past-orders/past-orders.component';
     routingComponents,
     NavigationComponent,
     PastOrdersComponent,
+    InventoryComponent,
+    CategoryEditComponent,
   ],
   imports: [
     BrowserModule,

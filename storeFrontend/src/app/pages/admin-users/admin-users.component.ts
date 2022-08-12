@@ -3,6 +3,7 @@ import {HttpService} from "../../services/http.service";
 import {IUser} from "../../interfaces/IUser";
 import {first} from "rxjs";
 import {DataService} from "../../services/data.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-users',
@@ -13,7 +14,8 @@ export class ADMINUsersComponent implements OnInit {
 
   userList:IUser[] = []
 
-  constructor(private httpService:HttpService, private dateService:DataService) {
+  constructor(private httpService:HttpService, private dataService:DataService, private router:Router) {
+    if (!dataService.currentUser) { this.router.navigate([""]) }
     httpService.GET_ALL_USERS().pipe(first()).subscribe({
       next: value => this.userList = value,
       error: err => console.error(err)
@@ -23,7 +25,7 @@ export class ADMINUsersComponent implements OnInit {
   ngOnInit(): void {
   }
   onEdit(user:IUser){
-    this.dateService.SET_USER_EDIT(user)
+    this.dataService.SET_USER_EDIT(user)
   }
 
 }

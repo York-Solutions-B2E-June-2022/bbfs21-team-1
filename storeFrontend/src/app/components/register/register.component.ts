@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
 
   onClick() {
     this.dataService.onRegister(this.name, this.username, this.email, this.password, this.status);
+
   }
-
-
 }

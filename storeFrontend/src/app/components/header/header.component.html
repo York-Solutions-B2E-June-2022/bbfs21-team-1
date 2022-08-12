@@ -1,7 +1,5 @@
 <header>
 	<a routerLink="/">(☞°ヮ°)☞SomeStore☜(°ヮ°☜)</a>
 	<a class="btn btn-primary" (click)="onClick()" routerLink="/signup" *ngIf="currentUser">Log out</a>
-	<!--HTML tip from Dan; If clicking on something takes you to another page,
-		use the <a> tag. If it changes something on your current page, use <button>-->
 	<a class="btn btn-primary" routerLink="/signup" *ngIf="!currentUser">User Login</a>
 </header>

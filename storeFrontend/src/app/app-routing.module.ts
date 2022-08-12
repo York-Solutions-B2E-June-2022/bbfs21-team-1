@@ -7,6 +7,8 @@ import {EditProfileComponent} from "./pages/edit-profile/edit-profile.component"
 import {ADMINUsersComponent} from "./pages/admin-users/admin-users.component";
 import {ADMINAddUsersComponent} from "./pages/admin-add-users/admin-add-users.component";
 import {PastOrdersComponent} from "./pages/past-orders/past-orders.component";
+import {CategoriesComponent} from "./pages/categories/categories.component";
+import {CategoryEditComponent} from "./pages/category-edit/category-edit.component";
 
 const routes:Routes = [
 	{path: "", component: ShopComponent},
@@ -16,6 +18,8 @@ const routes:Routes = [
 	{path: "users", component: ADMINUsersComponent },
 	{path: "users/add", component: ADMINAddUsersComponent},
   {path: "pastOrders", component: PastOrdersComponent}
+	{path: "categories", component: CategoriesComponent},
+	{path: "categories/add", component: CategoryEditComponent}
 ]
 
 @NgModule({
@@ -29,5 +33,6 @@ export const routingComponents = [
 	ShoppingCartComponent,
 	EditProfileComponent,
 	ADMINUsersComponent,
-	ADMINAddUsersComponent
+	ADMINAddUsersComponent,
+	CategoriesComponent
 ]

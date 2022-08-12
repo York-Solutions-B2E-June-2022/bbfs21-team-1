@@ -22,4 +22,5 @@ public class Category {
     public String getName() {
         return name;
     }
+    public Long getId() { return Id; }
 }

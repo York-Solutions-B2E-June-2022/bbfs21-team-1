@@ -26,3 +26,7 @@ a.active {
 a.home {
     font-weight: 700;
 }
+h2 {
+    margin: 0;
+    font-size: 1rem;
+}

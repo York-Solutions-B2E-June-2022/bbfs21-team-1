@@ -23,8 +23,8 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public void create(@RequestBody AccountAuthRequest requestBody) {
-        accountService.create(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
+    public Account create(@RequestBody AccountAuthRequest requestBody) {
+        return accountService.create(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
     }
     @PostMapping("/login")
     public Optional<Account> login(@RequestBody AccountAuthRequest requestBody) {
