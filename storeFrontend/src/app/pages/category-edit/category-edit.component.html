@@ -12,5 +12,5 @@
 			<a class="btn btn-secondary" routerLink="/categories" (click)="onCancel()">Cancel</a>
 		</div>
 	</form>
-	<a *ngIf="isEditing" class="btn btn-danger" (click)="onDelete()">Delete</a>
+	<button *ngIf="isEditing" class="btn btn-danger" (click)="onDelete()" [disabled]="error">Delete</button>
 </div>

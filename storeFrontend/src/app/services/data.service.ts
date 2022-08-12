@@ -3,8 +3,6 @@ import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
 import {Router} from "@angular/router";
-import {ICartItem} from "../interfaces/ICartItem";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {ICategory} from "../interfaces/ICategory";
 
 @Injectable({
@@ -12,16 +10,6 @@ import {ICategory} from "../interfaces/ICategory";
 })
 export class DataService {
 
-  user!: IUser;
-
-  // currentUser: IUser = {
-  //   id: 20,
-  //   username: "user1",
-  //   name: "Kelsey J",
-  //   password: "pass",
-  //   email: "email@email.com",
-  //   status: "Admin"
-  // }
   currentUser: IUser|null = null
   currentUser$ = new Subject<IUser | null>();
 
@@ -36,7 +24,10 @@ export class DataService {
   onRegister(name: string, username: string, email: string, password: string, status: string) {
     this.httpService.createUser(name, username, email, password, status).pipe(first()).subscribe({
       next: (data) => {
-        this.user = data;
+        this.currentUser = data
+        this.currentUser$.next(data)
+        console.log(this.currentUser)
+        this.router.navigate(["/"])
       },
       error: (error) => {
         console.error(error)
@@ -75,12 +66,10 @@ export class DataService {
   }
 
   // Edit-Profile functions
-
   onSaveEdit(name: string, username: string, email: string, password: string, status: string) {
     this.httpService.editUser(name, username, email, password, status, this.currentUser!.id!).pipe(first()).subscribe({
       next: (data) => {
-        this.user = data;
-        this.currentUser = this.user;
+        this.currentUser = data;
         this.currentUser$.next(this.currentUser);
       },
       error: (error) => {
@@ -89,15 +78,6 @@ export class DataService {
     })
   }
 
-  // onEditProfile() {
-  // }
-
-  onCancelEdit() {
-
-  }
-  onDeleteProfile() {
-
-  }
 
   //SHOPKEEPER FUNCTIONS
   SET_CATEGORY_EDIT(category:ICategory|null = null){

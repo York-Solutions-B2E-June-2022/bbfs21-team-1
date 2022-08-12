@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {HttpService} from "../../services/http.service";
+import { Router } from "@angular/router";
 import {first, Subscription} from "rxjs";
 import {IProduct} from "../../interfaces/IProduct";
 import {IUser} from "../../interfaces/IUser";
@@ -28,7 +29,8 @@ export class ShoppingCartComponent implements OnInit {
   //todo sale discount
 
 
-  constructor(private dataService: DataService, private httpService: HttpService) {
+  constructor(private dataService: DataService, private httpService: HttpService, private router:Router) {
+    if (!dataService.currentUser ){ router.navigate([""]) }
     this.id = dataService.currentUser!.id!;
     this.updateList()
   }

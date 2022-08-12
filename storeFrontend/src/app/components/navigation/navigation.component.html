@@ -12,4 +12,5 @@
 		</ng-template>
 		<li *ngIf="currentUser"><a routerLink="/edit" routerLinkActive="active">Edit Profile</a></li>
 	</ul>
+	<h2>Welcome{{ currentUser && ", " + currentUser.username }}!</h2>
 </nav>

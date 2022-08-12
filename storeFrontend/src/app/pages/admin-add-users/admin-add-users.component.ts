@@ -3,6 +3,7 @@ import {HttpService} from "../../services/http.service";
 import {IUser} from "../../interfaces/IUser";
 import {first} from "rxjs";
 import {DataService} from "../../services/data.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-add-users',
@@ -22,7 +23,8 @@ export class ADMINAddUsersComponent implements OnInit {
     status: ""
   }
 
-  constructor(private httpService:HttpService, private dataService:DataService) {
+  constructor(private httpService:HttpService, private dataService:DataService, private router:Router) {
+    if (!dataService.currentUser) {this.router.navigate([""])}
     if (dataService.userToEdit) {
       this.isEditing = true
       this.newUser = dataService.userToEdit
@@ -33,7 +35,9 @@ export class ADMINAddUsersComponent implements OnInit {
   }
 
   onDelete(){
-    this.httpService.DELETE_USER(this.newUser.id).pipe(first()).subscribe()
+    this.httpService.DELETE_USER(this.newUser.id).pipe(first()).subscribe({
+      next: value => this.router.navigate(["/users"])
+    })
   }
 
   emptyCheck():boolean{
