@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit, Optional} from '@angular/core';
 import {DataService} from "../../services/data.service";
+import {HttpService} from "../../services/http.service";
+import {IUser} from "../../interfaces/IUser";
+import {first, Subject} from "rxjs";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -9,14 +14,25 @@ import {DataService} from "../../services/data.service";
 export class LoginComponent implements OnInit {
 
   username!: string;
-  password!: string
+  password!: string;
 
-  constructor(private dataService: DataService) { }
+  error!: string;
+
+  constructor(private dataService: DataService, private httpService: HttpService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
-  onClick() {
-    this.dataService.onLogin(this.username, this.password);
+  onLogin(username: string, password: string) {
+    return this.httpService.login(username, password).pipe(first()).subscribe({
+      next: (data) => {
+        this.dataService.setCurrentUser(data);
+        this.router.navigate(["/"]);
+      },
+      error: () => {
+        this.error = "Login unsuccessful. Username and/or password incorrect."
+      }
+    });
   }
 }

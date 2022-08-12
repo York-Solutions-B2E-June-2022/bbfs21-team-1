@@ -17,7 +17,7 @@ const routes:Routes = [
 	{path:"edit", component: EditProfileComponent},
 	{path: "users", component: ADMINUsersComponent },
 	{path: "users/add", component: ADMINAddUsersComponent},
-  {path: "pastOrders", component: PastOrdersComponent}
+  {path: "pastOrders", component: PastOrdersComponent},
 	{path: "categories", component: CategoriesComponent},
 	{path: "categories/add", component: CategoryEditComponent}
 ]
