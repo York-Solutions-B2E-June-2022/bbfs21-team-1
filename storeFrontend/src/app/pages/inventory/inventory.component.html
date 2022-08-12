@@ -1,1 +1,20 @@
-<p>inventory works!</p>
+<div class="pg-container">
+	<header>
+		<h3>Inventory</h3>
+		<a class="btn" routerLink="/inventory/add">New</a>
+	</header>
+	<table>
+		<tbody>
+		<tr *ngFor="let product of inventoryList">
+			<td><img src="{{product.imgUrl}}" alt="" /></td>
+			<td>{{product.id}}</td>
+			<td class="bold">{{product.name}}</td>
+			<td>{{product.description}}</td>
+			<td>{{product.category.name}}</td>
+			<td>{{product.retailPrice}}</td>
+			<td class="discontinued">{{product.discontinued ? '&#9746;' : ''}}</td>
+			<td><a routerLink="/inventory/add" class="btn" (click)="onEdit(product)">Edit</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>

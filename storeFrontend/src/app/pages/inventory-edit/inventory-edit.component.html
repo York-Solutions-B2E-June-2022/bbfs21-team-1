@@ -1,0 +1,58 @@
+<div class="pg-container">
+	<div>
+		<h3>{{isEditing ? "Edit" : "Create"}} Product</h3>
+		<strong *ngIf="error" class="danger">{{error}}</strong>
+		<strong *ngIf="success" class="success">{{success}}</strong>
+		<form>
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input id="name" name="name" [(ngModel)]="tempProduct.name">
+			</div>
+			<div class="form-group">
+				<label for="desc">Description</label>
+				<textarea id="desc" name="desc" [(ngModel)]="tempProduct.description"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="available">Available</label>
+				<input type="date"  name="available" id="available" [ngModel]="tempProduct.saleDate | date:'yyyy-MM-dd' " (ngModelChange)="onAvailChange($event)">
+			</div>
+			<div class="form-group">
+				<label for="category">Category</label>
+				<select id="category" name="category" [(ngModel)]="tempProduct.category.name">
+					<option disabled>Select Category</option>
+					<option *ngFor="let cat of categoryList">{{cat.name}}</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="map">Minimum Advertised Price</label>
+				<input type="number" step="0.01" min="0" name="map" id="map" [(ngModel)]="tempProduct.mapPrice">
+			</div>
+			<div class="form-group">
+				<label for="retail">Retail Price</label>
+				<input type="number" step="0.01" min="0" name="retail" id="retail" [(ngModel)]="tempProduct.retailPrice">
+			</div>
+			<div class="form-group">
+				<label for="sale">Sale Price</label>
+				<input type="number" step="0.01" min="0" name="sale" id="sale" [(ngModel)]="tempProduct.salePrice">
+			</div>
+			<div class="form-group">
+				<label for="saleDate">Sale Date</label>
+				<input type="date"  name="saleDate" id="saleDate" [ngModel]="tempProduct.saleDate | date:'yyyy-MM-dd' " (ngModelChange)="onDateChange($event)">
+			</div>
+			<div>
+				<label for="discontinued">Discontinued</label>
+				<input type="checkbox" name="discontinued" id="discontinued" [(ngModel)]="tempProduct.discontinued">
+			</div>
+
+			<div class="btn-container">
+				<button class="btn btn-main" (click)="onSave()">Save</button>
+				<a class="btn btn-secondary" routerLink="/inventory" (click)="onCancel()">Cancel</a>
+			</div>
+		</form>
+	</div>
+	<a *ngIf="isEditing" class="btn btn-danger" (click)="onDelete()">Delete</a>
+	<img *ngIf="isEditing" src="{{tempProduct.imgUrl}}" alt="" />
+	<div class="upload" *ngIf="!isEditing">
+		<button class="btn btn-secondary">Upload Image</button>
+	</div>
+</div>

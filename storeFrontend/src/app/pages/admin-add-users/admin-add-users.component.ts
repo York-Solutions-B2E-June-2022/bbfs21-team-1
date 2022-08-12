@@ -70,6 +70,7 @@ export class ADMINAddUsersComponent implements OnInit {
           next: () => { this.success = "User Created!" }
         })
       }
+      this.isEditing = false
       this.newUser = {
         name: "",
         username: "",

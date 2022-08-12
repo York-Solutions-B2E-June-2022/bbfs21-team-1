@@ -12,6 +12,7 @@ import {IUser} from "../../interfaces/IUser";
 })
 export class RegisterComponent implements OnInit {
 
+
   name!: string;
   username!: string;
   email!: string;

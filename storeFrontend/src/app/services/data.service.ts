@@ -3,17 +3,26 @@ import {HttpService} from "./http.service";
 import {first, Subject} from "rxjs";
 import {IUser} from "../interfaces/IUser";
 import {ICategory} from "../interfaces/ICategory";
+import {IProduct} from "../interfaces/IProduct";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  currentUser: IUser|null = null
+  currentUser: IUser|null = {
+    email: "email@email.com",
+    id: 25,
+    name: "Daniel Thompson",
+    password: "pass",
+    status: "Admin",
+    username: "user1"
+  }
   currentUser$ = new Subject<IUser | null>();
 
   //SHOPKEEPER Edit Variables
   categoryToEdit:ICategory|null = null
+  productToEdit:IProduct|null = null
   //ADMIN Edit Variables
   userToEdit:IUser|null = null
 
@@ -56,6 +65,9 @@ export class DataService {
   //SHOPKEEPER FUNCTIONS
   SET_CATEGORY_EDIT(category:ICategory|null = null){
     this.categoryToEdit = category
+  }
+  SET_PRODUCT_EDIT(product:IProduct|null = null){
+    this.productToEdit = product
   }
 
   //ADMIN User Edit Functions

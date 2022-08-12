@@ -70,6 +70,35 @@ export class HttpService {
       {quantity, id}
     )
   }
+  CREATE_PRODUCT(productBody:IProduct){
+    return this.httpClient.post('http://localhost:8080/products',{
+      name: productBody.name,
+      description: productBody.description,
+      category: productBody.category.name,
+      available: productBody.available,
+      mapPrice: productBody.mapPrice,
+      retailPrice: productBody.retailPrice,
+      salePrice: productBody.salePrice,
+      saleDate: productBody.saleDate
+    })
+  }
+  EDIT_PRODUCT(productBody:IProduct){
+    return this.httpClient.put('http://localhost:8080/products',{
+      id: productBody.id,
+      name: productBody.name,
+      description: productBody.description,
+      category: productBody.category.name,
+      available: productBody.available,
+      mapPrice: productBody.mapPrice,
+      retailPrice: productBody.retailPrice,
+      salePrice: productBody.salePrice,
+      saleDate: productBody.saleDate,
+      discontinued: productBody.discontinued
+    })
+  }
+  DELETE_PRODUCT(productId:number){
+    return this.httpClient.delete(`http://localhost:8080/products/${productId}`)
+  }
 
   // CATEGORIES
   GET_CATEGORIES():Observable<ICategory[]>{

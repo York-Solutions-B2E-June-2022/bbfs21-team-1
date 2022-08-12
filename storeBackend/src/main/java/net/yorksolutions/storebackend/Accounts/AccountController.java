@@ -24,10 +24,10 @@ public class AccountController {
 
     @PostMapping("/create")
     public Account create(@RequestBody AccountAuthRequest requestBody) {
-        return accountService.create(requestBody.username, requestBody.password, requestBody.name, requestBody.email, requestBody.status);
+        return accountService.create(requestBody);
     }
     @PostMapping("/login")
-    public Optional<Account> login(@RequestBody AccountAuthRequest requestBody) {
+    public Account login(@RequestBody AccountAuthRequest requestBody) {
         return accountService.login(requestBody.username, requestBody.password);
     }
     @PutMapping("/edit")
