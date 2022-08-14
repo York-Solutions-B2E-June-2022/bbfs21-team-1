@@ -28,7 +28,6 @@ export class InventoryEditComponent implements OnInit {
         if (dataService.productToEdit) {
           this.isEditing = true
           this.tempProduct = dataService.productToEdit
-          console.log(this.tempProduct)
         }
       },
       error: err => {}
@@ -80,7 +79,6 @@ export class InventoryEditComponent implements OnInit {
           error: err => console.log(err.error.message)
         })
       }
-      this.router.navigate(["/inventory"])
       this.tempProduct = this.resetFields()
       setTimeout(()=>{ this.success = "" }, 2500)
     }
@@ -88,6 +86,7 @@ export class InventoryEditComponent implements OnInit {
 
   onCancel(){
     this.dataService.SET_PRODUCT_EDIT()
+    this.router.navigate(["/inventory"])
   }
   resetFields(){
     return {

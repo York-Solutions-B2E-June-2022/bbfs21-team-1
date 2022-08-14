@@ -4,6 +4,6 @@
 
 <div class="container">
   <div class="pastOrderItem" *ngFor="let pastOrder of cartItemList">
-    <app-cart-item [cartItem]="pastOrder"></app-cart-item>
+    <app-cart-item [cartItem]="pastOrder" (ON_ORDER_AGAIN)="updateList($event)"></app-cart-item>
   </div>
 </div>

@@ -6,19 +6,20 @@
 
   <div class="container">
     <div *ngFor="let cartItem of cartItemList">
-      <app-cart-item [cartItem]="cartItem" (onCountChange)="updateList()"></app-cart-item>
+        <strong *ngIf="checkedOut">Thank you for your order!</strong>
+      <app-cart-item [cartItem]="cartItem" (onCountChange)="updateList()" (ON_REMOVAL)="updateList()"></app-cart-item>
     </div>
   </div>
 
   <div class="totals">
     <div class="input-group">
       <h4>Summary</h4>
-      <div>
+      <div *ngIf="currentUser">
         <label for="coupon">Coupon Code </label>
-        <select id="coupon">
+        <select id="coupon" [ngModel]="selectedCoupon?.label" (ngModelChange)="setCoupon($event)" >
 <!--          todo these are just examples - ad-->
-          <option value="ineedpants">Free Shipping for Pants</option>
-          <option value="10percentoff200">10% off $200+ Purchase</option>
+          <option selected hidden>Select Coupon</option>
+          <option *ngFor="let c of couponList">{{c.label}}</option>
         </select>
       </div>
     </div>
@@ -37,10 +38,11 @@
 
     <div class="endTotal">
       <h6>Total: {{cartTotal | currency}}</h6>
+        <strong *ngIf="discount">Saving {{discount | currency}}!!</strong>
     </div>
 
     <div>
-      <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="onCheckout()">Checkout</button>
     </div>
   </div>
 

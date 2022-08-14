@@ -6,6 +6,7 @@ import {first, Subscription} from "rxjs";
 import {IProduct} from "../../interfaces/IProduct";
 import {IUser} from "../../interfaces/IUser";
 import {ICartItem} from "../../interfaces/ICartItem";
+import {ICoupon} from "../../interfaces/ICoupon";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,28 +16,43 @@ import {ICartItem} from "../../interfaces/ICartItem";
 export class ShoppingCartComponent implements OnInit {
 
   cartItemList!: Array<ICartItem>
+  couponList:ICoupon[] = []
+  selectedCoupon:ICoupon|null = null
+  discount!:null|number
+  checkedOut:boolean = false
+  currentUser:IUser|null = this.dataService.currentUser
 
   taxRate: number = 0.07;
   cartSubtotal: number = 0;
   taxCost: number = 0;
   shippingCost: number = 0;
   cartTotal: number = 0;
-  id!: number
-
-  //todo coupon discount
-  //todo sale discount
 
 
   constructor(private dataService: DataService, private httpService: HttpService, private router:Router) {
-    if (!dataService.currentUser ){ router.navigate([""]) }
-    this.id = dataService.currentUser!.id!;
-    this.updateList()
+    if ( dataService.currentUser ) {
+      this.updateList()
+    } else {
+      this.cartItemList = dataService.guestCart
+      this.updateTotals()
+    }
+    this.httpService.GET_COUPONS().pipe(first()).subscribe(
+        {next: value => {
+            this.couponList = value.filter((c) => c.useLimit !== 0)
+            console.log(value)
+          }}
+    )
   }
 
   updateList(){
-    this.httpService.displayCartItemList(this.id).pipe(first()).subscribe({
+    if (!this.currentUser){
+      this.cartItemList = this.dataService.guestCart
+      this.updateTotals()
+      return
+    }
+    this.httpService.displayCartItemList(this.dataService.currentUser?.id!).pipe(first()).subscribe({
       next: (data) => {
-        this.cartItemList = data;
+        this.cartItemList = data.filter((item) => !item.pastOrder);
         this.updateTotals();
       },
       error: (error) => {
@@ -55,8 +71,28 @@ export class ShoppingCartComponent implements OnInit {
     this.taxCost = this.cartSubtotal * this.taxRate;
     this.shippingCost = this.cartSubtotal > 100 ? 0 : 10;
     this.cartTotal = this.cartSubtotal + this.taxCost + this.shippingCost;
+    if ( this.selectedCoupon ) {
+      this.cartTotal -= this.cartTotal * this.selectedCoupon.discount
+    }
   }
 
   ngOnInit(): void {
+  }
+  setCoupon(couponLabel:string){
+    this.selectedCoupon = this.couponList.find(c => c.label === couponLabel)!
+    this.discount = this.cartTotal * this.selectedCoupon.discount
+    this.updateTotals()
+  }
+  onCheckout(){
+    if ( !this.dataService.currentUser ) {
+      this.router.navigate(["/signup"])
+      return
+    }
+    this.cartItemList.forEach((item) => {
+      this.httpService.SET_PURCHASED(item.id).pipe(first()).subscribe({
+        next: () => this.updateList()
+      })
+    })
+    this.checkedOut = true
   }
 }

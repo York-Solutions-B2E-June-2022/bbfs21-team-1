@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {DataService} from "../../services/data.service";
 import {IProduct} from "../../interfaces/IProduct";
-import {IUser} from "../../interfaces/IUser";
 import {first} from "rxjs";
 
 @Component({

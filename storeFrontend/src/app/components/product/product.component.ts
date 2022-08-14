@@ -11,8 +11,6 @@ export class ProductComponent implements OnInit {
 
   @Input() product!: IProduct;
 
-  userId!: number;
-
   constructor(private dataService: DataService) {
   }
 
@@ -20,8 +18,16 @@ export class ProductComponent implements OnInit {
   }
 
   onClick() {
-    this.userId = this.dataService.currentUser!.id!;
-    this.dataService.addToCart(this.userId, this.product.id);
-    console.log(this.userId, this.product.id)
+    if ( !this.dataService.currentUser ) {
+      this.dataService.ADD_TO_GUEST_CART({
+        cart:{},
+        id: new Date().getTime(),
+        product: this.product,
+        quantity: 1,
+        pastOrder: false
+      })
+    } else {
+      this.dataService.addToCart(this.dataService.currentUser!.id!, this.product.id);
+    }
   }
 }

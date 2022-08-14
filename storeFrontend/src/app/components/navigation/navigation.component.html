@@ -1,12 +1,12 @@
 <nav>
 	<ul>
 		<li><a routerLink="/" class="home">All Products</a></li>
-		<li *ngIf="currentUser"><a routerLink="/cart" routerLinkActive="active">Your Bag</a></li>
+		<li><a routerLink="/cart" routerLinkActive="active">Your Bag</a></li>
 		<li *ngIf="currentUser"><a routerLink="/pastOrders" routerLinkActive="active">Past Orders</a></li>
 		<br *ngIf="currentUser && currentUser.status !== 'Customer' then showSK">
 		<ng-template #showSK>
 			<li><a routerLink="/inventory" routerLinkActive="active">Inventory</a></li>
-			<li><a>Coupons</a></li>
+			<li><a routerLink="/coupons" routerLinkActive="active">Coupons</a></li>
 			<li><a routerLink="/categories" routerLinkActive="active">Categories</a></li>
 			<li *ngIf="currentUser!.status === 'Admin'"><a routerLink="/users" routerLinkActive="active">Users</a></li>
 		</ng-template>

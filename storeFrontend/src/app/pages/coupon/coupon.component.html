@@ -1,0 +1,18 @@
+<div class="pg-container">
+	<header>
+		<h3>Coupons</h3>
+		<a class="btn" routerLink="/coupons/add">New</a>
+	</header>
+	<table>
+		<tbody>
+		<tr *ngFor="let coupon of couponList">
+			<td>{{coupon.id}}</td>
+			<td class="bold">{{coupon.label}}</td>
+			<td>{{coupon.couponCode}}</td>
+			<td [ngClass]="coupon.useLimit < 3 ? 'warning': ''">Remaining Uses: {{coupon.useLimit}}</td>
+			<td>{{coupon.goodUntil | date: "yyyy-MM-dd"}}</td>
+			<td><a routerLink="/coupons/add" class="btn" (click)="onEdit(coupon)">Edit</a></td>
+		</tr>
+		</tbody>
+	</table>
+</div>

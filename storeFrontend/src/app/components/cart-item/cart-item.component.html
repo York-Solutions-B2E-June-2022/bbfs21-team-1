@@ -7,17 +7,17 @@
     <p id="productDescription">{{cartItem.product.description}}</p>
     <h6 id="productPrice">{{cartItem.product.retailPrice | currency}}</h6>
   </div>
-  <div>
+  <div *ngIf="!cartItem.pastOrder && currentUser">
     <label for="quantity">Quantity</label>
     <input id="quantity" type="number" min="1" [ngModel]="cartItem.quantity" (ngModelChange)="countChange($event)">
   </div>
   <div class="button-group">
     <div *ngIf="cartItem.pastOrder == true; then pastOrder, else cart"></div>
     <ng-template #pastOrder>
-      <button class="btn btn-secondary">Order Again</button>
+      <button class="btn btn-secondary" (click)="onOrderAgain(cartItem.id)">Order Again</button>
     </ng-template>
     <ng-template #cart>
-      <button id="removeFromCart" class="btn btn-secondary">Remove</button>
+      <button id="removeFromCart" class="btn btn-secondary" (click)="onRemove(cartItem.id)">Remove</button>
     </ng-template>
   </div>
 </div>

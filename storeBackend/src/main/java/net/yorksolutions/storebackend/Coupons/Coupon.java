@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,10 +25,10 @@ public class Coupon {
     @JsonProperty
     public int useLimit;
     @JsonProperty
-    public LocalDateTime goodUntil;
+    public LocalDate goodUntil;
 
     public Coupon(){}
-    public Coupon(String label, String code, Float discount, int limit, LocalDateTime goodUntil){
+    public Coupon(String label, String code, Float discount, int limit, LocalDate goodUntil){
         this.label = label;
         this.couponCode = code;
         this.discount = discount;

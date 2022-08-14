@@ -40,3 +40,7 @@ h4 {
   flex-direction: column;
   align-content: flex-start;
 }
+strong {
+  color: #e2ff00;
+  font-weight: 500;
+}

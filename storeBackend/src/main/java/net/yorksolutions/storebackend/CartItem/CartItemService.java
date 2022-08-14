@@ -41,7 +41,7 @@ public class CartItemService {
     }
     public void SET_PURCHASED(Long itemId){
         CartItem item = emptyCheck(this.repository.findById(itemId));
-        item.pastOrder = true;
+        item.pastOrder = !item.pastOrder;
         this.repository.save(item);
     }
     public void REMOVE_ITEM(Long id){

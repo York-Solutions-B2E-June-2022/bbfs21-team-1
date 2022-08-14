@@ -5,6 +5,7 @@ import { IUser } from '../interfaces/IUser';
 import {ICategory} from "../interfaces/ICategory";
 import {IProduct} from "../interfaces/IProduct";
 import {ICartItem} from "../interfaces/ICartItem";
+import {ICoupon} from "../interfaces/ICoupon";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {
   }
-  //USERS
+
+  //-------------------- USERS --------------------//
   GET_ALL_USERS():Observable<IUser[]>{
     return this.httpClient.get<IUser[]>("http://localhost:8080/account")
   }
@@ -26,18 +28,15 @@ export class HttpService {
   EDIT_USER(userObject:IUser){
     return this.httpClient.put('http://localhost:8080/account/edit', {...userObject})
   }
-
   DELETE_USER(id:number){
     return this.httpClient.delete(`http://localhost:8080/account/${id}`)
   }
-
   login(username: string, password: string) {
     return this.httpClient.post(
       "http://localhost:8080/account/login",
       {username, password}
     ) as Observable<any>
   }
-
   editUser(name: string, username: string, email: string, password: string, status: string, id: number) {
     return this.httpClient.put(
       "http://localhost:8080/account/edit",
@@ -45,29 +44,10 @@ export class HttpService {
     ) as Observable<any>
   }
 
-  //PRODUCTS
+  //-------------------- PRODUCTS --------------------//
   displayProducts():Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(
       "http://localhost:8080/products"
-    )
-  }
-
-  addItemToCart(userId: number, productId: number){
-    return this.httpClient.post(
-      "http://localhost:8080/carts/add",
-      {userId, productId}
-    ) as Observable<ICartItem>
-  }
-
-  displayCartItemList(userId: number){
-    return this.httpClient.get<ICartItem[]>(
-      `http://localhost:8080/carts/${userId}`
-    )
-  }
-
-  countChange(quantity: number, id: number){
-    return this.httpClient.post("http://localhost:8080/items/edit",
-      {quantity, id}
     )
   }
   CREATE_PRODUCT(productBody:IProduct){
@@ -100,7 +80,31 @@ export class HttpService {
     return this.httpClient.delete(`http://localhost:8080/products/${productId}`)
   }
 
-  // CATEGORIES
+  //-------------------- CART --------------------//
+  addItemToCart(userId: number, productId: number){
+    return this.httpClient.post(
+      "http://localhost:8080/carts/add",
+      {userId, productId}
+    ) as Observable<ICartItem>
+  }
+  REMOVE_FROM_CART(cartItemId:number){
+    return this.httpClient.delete(`http://localhost:8080/items/${cartItemId}`)
+  }
+  displayCartItemList(userId: number){
+    return this.httpClient.get<ICartItem[]>(
+      `http://localhost:8080/carts/${userId}`
+    )
+  }
+  countChange(quantity: number, id: number){
+    return this.httpClient.post("http://localhost:8080/items/edit",
+      {quantity, id}
+    )
+  }
+  SET_PURCHASED(cartItemId:number){
+    return this.httpClient.post('http://localhost:8080/items/checkout', {id: cartItemId})
+  }
+
+  //-------------------- CATEGORIES --------------------//
   GET_CATEGORIES():Observable<ICategory[]>{
     return this.httpClient.get<ICategory[]>("http://localhost:8080/Category")
   }
@@ -112,6 +116,20 @@ export class HttpService {
   }
   DELETE_CATEGORY(categoryId:number){
     return this.httpClient.delete(`http://localhost:8080/Category/${categoryId}`)
+  }
+
+  //-------------------- COUPONS --------------------//
+  GET_COUPONS():Observable<ICoupon[]>{
+    return this.httpClient.get<ICoupon[]>('http://localhost:8080/coupons')
+  }
+  CREATE_COUPONS(couponBody:ICoupon){
+    return this.httpClient.post('http://localhost:8080/coupons',{...couponBody})
+  }
+  EDIT_COUPON(couponBody:ICoupon){
+    return this.httpClient.put('http://localhost:8080/coupons',{...couponBody})
+  }
+  DELETE_COUPON(couponId:number){
+    return this.httpClient.delete(`http://localhost:8080/coupons/${couponId}`)
   }
 
 }

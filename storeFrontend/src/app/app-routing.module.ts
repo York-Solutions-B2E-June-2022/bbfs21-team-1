@@ -11,6 +11,8 @@ import {CategoriesComponent} from "./pages/categories/categories.component";
 import {CategoryEditComponent} from "./pages/category-edit/category-edit.component";
 import {InventoryComponent} from "./pages/inventory/inventory.component";
 import {InventoryEditComponent} from "./pages/inventory-edit/inventory-edit.component";
+import {CouponComponent} from "./pages/coupon/coupon.component";
+import {CouponEditComponent} from "./pages/coupon-edit/coupon-edit.component";
 
 const routes:Routes = [
 	{path: "", component: ShopComponent},
@@ -19,11 +21,13 @@ const routes:Routes = [
 	{path:"edit", component: EditProfileComponent},
 	{path: "users", component: ADMINUsersComponent },
 	{path: "users/add", component: ADMINAddUsersComponent},
-  {path: "pastOrders", component: PastOrdersComponent},
+    {path: "pastOrders", component: PastOrdersComponent},
 	{path: "categories", component: CategoriesComponent},
 	{path: "categories/add", component: CategoryEditComponent},
 	{path: "inventory", component: InventoryComponent},
-	{path: "inventory/add", component: InventoryEditComponent}
+	{path: "inventory/add", component: InventoryEditComponent},
+	{path: "coupons", component: CouponComponent},
+	{path: "coupons/add", component: CouponEditComponent}
 ]
 
 @NgModule({
@@ -41,5 +45,8 @@ export const routingComponents = [
 	CategoriesComponent,
 	CategoryEditComponent,
 	InventoryComponent,
-	InventoryEditComponent
+	InventoryEditComponent,
+	PastOrdersComponent,
+	CouponComponent,
+	CouponEditComponent
 ]
