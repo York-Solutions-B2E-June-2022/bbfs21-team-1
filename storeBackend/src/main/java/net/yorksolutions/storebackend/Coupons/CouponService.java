@@ -2,8 +2,10 @@ package net.yorksolutions.storebackend.Coupons;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import static net.yorksolutions.storebackend.Helpers.emptyCheck;
-import static net.yorksolutions.storebackend.Helpers.nullCheck;
+
+import java.util.ArrayList;
+
+import static net.yorksolutions.storebackend.Helpers.*;
 
 @Service
 public class CouponService {
@@ -21,9 +23,9 @@ public class CouponService {
     public void CREATE_COUPON(CouponRequest requestBody){
         Coupon newCoupon = new Coupon(
                 nullCheck(requestBody.label),
-                nullCheck(requestBody.code),
+                nullCheck(requestBody.couponCode),
                 nullCheck(requestBody.discount),
-                requestBody.limit,
+                requestBody.useLimit,
                 nullCheck(requestBody.goodUntil)
         );
         this.repository.save(newCoupon);
@@ -31,9 +33,9 @@ public class CouponService {
     public void EDIT_COUPON(CouponRequest requestBody){
         Coupon coupon = emptyCheck(this.repository.findById(requestBody.id));
         coupon.label = requestBody.label;
-        coupon.couponCode = requestBody.code;
+        coupon.couponCode = requestBody.couponCode;
         coupon.discount = requestBody.discount;
-        coupon.useLimit = requestBody.limit;
+        coupon.useLimit = requestBody.useLimit;
         coupon.goodUntil = requestBody.goodUntil;
         this.repository.save(coupon);
     }

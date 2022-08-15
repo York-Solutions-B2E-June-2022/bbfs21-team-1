@@ -16,14 +16,20 @@ export class PastOrdersComponent implements OnInit {
 
 
   constructor(private dataService: DataService, private httpService: HttpService) {
-    httpService.displayCartItemList(dataService.currentUser?.id!).pipe(first()).subscribe({
+    this.setList()
+
+  }
+  setList(){
+    this.httpService.displayCartItemList(this.dataService.currentUser?.id!).pipe(first()).subscribe({
       next: (value) => {
         this.cartItemList = value.filter((i)=>i.pastOrder)
-        console.log(this.cartItemList)
-        console.log(value)
       }
     })
-
+  }
+  updateList(cartItemId:number){
+    this.httpService.SET_PURCHASED(cartItemId).pipe(first()).subscribe({
+      next: () => this.setList()
+    })
   }
 
   ngOnInit(): void {

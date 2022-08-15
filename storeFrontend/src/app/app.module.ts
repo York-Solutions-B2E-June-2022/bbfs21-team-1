@@ -11,7 +11,6 @@ import { ProductComponent } from './components/product/product.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { PastOrdersComponent } from './pages/past-orders/past-orders.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +20,8 @@ import { PastOrdersComponent } from './pages/past-orders/past-orders.component';
     ProductComponent,
     CartItemComponent,
     HeaderComponent,
-    routingComponents,
     NavigationComponent,
-    PastOrdersComponent,
+    routingComponents,
   ],
   imports: [
     BrowserModule,
